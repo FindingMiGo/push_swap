@@ -1,39 +1,34 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   double_action.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: tisoya <tisoya@student.42tokyo.jp>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/12/08 16:10:53 by tisoya            #+#    #+#             */
-/*   Updated: 2021/12/16 12:24:27 by tisoya           ###   ########.fr       */
+/*   Created: 2021/12/16 11:59:46 by tisoya            #+#    #+#             */
+/*   Updated: 2021/12/16 12:03:25 by tisoya           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-int	main(int args, char *argv[])
+void	swap_swap(t_node *node1, t_node *node2)
 {
-	t_node	*node_a;
-	t_node	*node_b;
-	int		*sort;
-	size_t	size;
+	swap(node1, 0);
+	swap(node2, 0);
+	write(1, "ss\n", 3);
+}
 
-	if (args < 2)
-		exit(1);
-	node_a = init_node(args, argv);
-	node_b = init_node(0, NULL);
-	size = node_a->val;
+void	rrot_rrot(t_node *node1, t_node *node2)
+{
+	r_rot(node1, 0);
+	r_rot(node2, 0);
+	write(1, "rrr\n", 4);
+}
 
-	pre_sort(node_a, &sort);
-
-	if (is_sorted(node_a))
-		return (0);
-	if (size == 2)
-		case_two(node_a);
-	else if (size == 3)
-		case_three(node_a);
-	else if (size <= 6)
-		case_ngt_six(node_a, node_b);
-	return (0);
+void	rot_rot(t_node *node1, t_node *node2)
+{
+	rot(node1, 0);
+	rot(node2, 0);
+	write(1, "rr\n", 3);
 }

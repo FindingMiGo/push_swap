@@ -1,39 +1,25 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   arg_check.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: tisoya <tisoya@student.42tokyo.jp>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/12/08 16:10:53 by tisoya            #+#    #+#             */
-/*   Updated: 2021/12/16 12:24:27 by tisoya           ###   ########.fr       */
+/*   Created: 2021/12/16 12:14:42 by tisoya            #+#    #+#             */
+/*   Updated: 2021/12/16 12:14:50 by tisoya           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-int	main(int args, char *argv[])
+int	is_sorted(t_node *node)
 {
-	t_node	*node_a;
-	t_node	*node_b;
-	int		*sort;
-	size_t	size;
-
-	if (args < 2)
-		exit(1);
-	node_a = init_node(args, argv);
-	node_b = init_node(0, NULL);
-	size = node_a->val;
-
-	pre_sort(node_a, &sort);
-
-	if (is_sorted(node_a))
-		return (0);
-	if (size == 2)
-		case_two(node_a);
-	else if (size == 3)
-		case_three(node_a);
-	else if (size <= 6)
-		case_ngt_six(node_a, node_b);
-	return (0);
+	node = node->next;
+	while (node->next->index != 0)
+	{
+		if (node->val > node->next->val)
+			return (0);
+		node = node->next;
+	}
+	return (1);
 }
