@@ -14,4 +14,5 @@ $(NAME) : $(OBJS)
 	$(CC) $(OBJS) $(LIBFT) -o $(NAME)
 
 fclean :
-	rm -rf push_swap
+	make fclean -C ./libft
+	rm -rf $(NAME) $(OBJS)
