@@ -6,7 +6,7 @@
 /*   By: tisoya <tisoya@student.42tokyo.jp>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/08 16:04:27 by tisoya            #+#    #+#             */
-/*   Updated: 2021/12/16 12:24:22 by tisoya           ###   ########.fr       */
+/*   Updated: 2021/12/19 01:22:35 by tisoya           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,10 +56,11 @@ t_node	*init_node(int args, char *argv[]);
 void	re_index(t_node *node);
 
 // pre_sort.c
-void	pre_sort(t_node *node, int **sort);
+int	*pre_sort(t_node *node);
 
 // arg_check.c
 int		is_sorted(t_node *node);
+int		is_digit_str(char *str);
 
 // debug.c
 void	print_node(t_node *node, int count);

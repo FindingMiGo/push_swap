@@ -6,7 +6,7 @@
 /*   By: tisoya <tisoya@student.42tokyo.jp>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/08 16:10:53 by tisoya            #+#    #+#             */
-/*   Updated: 2021/12/16 12:12:32 by tisoya           ###   ########.fr       */
+/*   Updated: 2021/12/16 12:52:53 by tisoya           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,13 +49,14 @@ void	print_node(t_node *node, int count)
 
 void	print_intptr(int *sort, int size)
 {
-	int i;
+	size_t i;
 
 	i = 0;
-	while(i + 1 < size)
+	while(i < size)
 	{
 		printf("%d", sort[i++]);
-		if (i + 1 < size)
-			printf(",");
+		if (i < size)
+			printf(", ");
 	}
+	printf("\n");
 }
