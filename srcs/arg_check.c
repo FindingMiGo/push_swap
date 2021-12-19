@@ -6,7 +6,7 @@
 /*   By: tisoya <tisoya@student.42tokyo.jp>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/16 12:14:42 by tisoya            #+#    #+#             */
-/*   Updated: 2021/12/19 01:56:00 by tisoya           ###   ########.fr       */
+/*   Updated: 2021/12/19 16:34:32 by tisoya           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,7 @@ int	is_sorted(t_node *node)
 	return (1);
 }
 
-int is_digit_str(char *str)
+int	is_digit_str(char *str)
 {
 	size_t	i;
 
@@ -44,7 +44,32 @@ int is_digit_str(char *str)
 	return (1);
 }
 
-int	ft_atoi_llong(const char *str)
+int	is_unique(int args, char *argv[])
+{
+	size_t	i;
+	size_t	j;
+
+	i = 0;
+	j = 0;
+	while (i < args)
+	{
+		j = i + 1;
+		while (i + j < args)
+		{
+			if (ft_strncmp(argv[i], argv[j], ft_strlen(argv[i])))
+				j++;
+			else
+			{
+				write(2, "Error\n", 6);
+				exit(1);
+			}
+		}
+		i++;
+	}
+	return (1);
+}
+
+int	atoi_and_errcheck(char *str, t_node *node, size_t count)
 {
 	int			sign;
 	long long	ans;
@@ -55,11 +80,19 @@ int	ft_atoi_llong(const char *str)
 	sign = 1;
 	if (str[i] == '-' || str[i] == '+')
 	{
-		if (str[i] == '-')
+		if (str[i++] == '-')
 			sign = -1;
-		i++;
 	}
 	while (ft_isdigit(str[i]))
+	{
+		if ((sign == 1 && ans > (INT_MAX - (str[i] - '0')) / 10)
+			|| (sign == -1 && (-1 * ans) < (INT_MIN + (str[i] - '0')) / 10))
+		{
+			write(2, "Error\n", 6);
+			free_node(node, count);
+			exit(EXIT_FAILURE);
+		}
 		ans = ans * 10 + (str[i++] - '0');
-	return (ans * sign);
+	}
+	return ((int)(ans * sign));
 }

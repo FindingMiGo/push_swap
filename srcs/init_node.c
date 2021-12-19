@@ -6,7 +6,7 @@
 /*   By: tisoya <tisoya@student.42tokyo.jp>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/16 12:19:21 by tisoya            #+#    #+#             */
-/*   Updated: 2021/12/16 12:20:57 by tisoya           ###   ########.fr       */
+/*   Updated: 2021/12/19 14:22:23 by tisoya           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,7 +28,7 @@ t_node	*init_node(int args, char *argv[])
 		tmp->next->prev = tmp;
 		tmp = tmp->next;
 		tmp->index = i + 1;
-		tmp->val = ft_atoi(argv[1 + i]);
+		tmp->val = atoi_and_errcheck(argv[i + 1], sentinel, i + 1);
 		i++;
 	}
 	tmp->next = sentinel;

@@ -6,7 +6,7 @@
 /*   By: tisoya <tisoya@student.42tokyo.jp>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/08 16:10:53 by tisoya            #+#    #+#             */
-/*   Updated: 2021/12/19 01:25:49 by tisoya           ###   ########.fr       */
+/*   Updated: 2021/12/19 16:35:10 by tisoya           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,17 +27,35 @@ void	size_branch(t_node *node_a, t_node *node_b)
 		case_ngt_six(node_a, node_b);
 }
 
-void	arg_check(int args, char *argv[])
+void	arg_check(int as, char *av[])
 {
 	size_t	i;
 
 	i = 0;
-	while (i < args - 1)
+	while (i < as)
 	{
-		if (!is_digit_str(argv[i + 1]))
+		if (!is_digit_str(av[i]))
 			exit(EXIT_FAILURE);
 		i++;
 	}
+	is_unique(as, av);
+}
+
+void	free_node(t_node *node, int count)
+{
+	t_node	*head;
+	t_node	*tmp;
+
+	head = node;
+	node = node->next;
+	while (node != head && count)
+	{
+		tmp = node->next;
+		free(node);
+		node = tmp;
+		count--;
+	}
+	free(head);
 }
 
 int	main(int args, char *argv[])
@@ -48,12 +66,14 @@ int	main(int args, char *argv[])
 
 	if (args < 2)
 		exit(1);
-	arg_check(args, argv);
+	arg_check(args - 1, argv + 1);
 	node_a = init_node(args, argv);
 	node_b = init_node(0, NULL);
 	sort = pre_sort(node_a);
-	print_intptr(sort, node_a->val);
-
+	// print_intptr(sort, node_a->val);
+	is_unique(args-1,argv+1);
+	free_node(node_a, node_a->val);
+	free_node(node_b, node_b->val);
 	free(sort);
 	return (0);
 }
