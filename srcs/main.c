@@ -6,7 +6,7 @@
 /*   By: tisoya <tisoya@student.42tokyo.jp>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/08 16:10:53 by tisoya            #+#    #+#             */
-/*   Updated: 2021/12/19 16:35:10 by tisoya           ###   ########.fr       */
+/*   Updated: 2021/12/19 16:46:55 by tisoya           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,10 +35,17 @@ void	arg_check(int as, char *av[])
 	while (i < as)
 	{
 		if (!is_digit_str(av[i]))
+		{
+			write(2, "Error\n", 6);
 			exit(EXIT_FAILURE);
+		}
 		i++;
 	}
-	is_unique(as, av);
+	if (!is_unique(as, av))
+	{
+		write(2, "Error\n", 6);
+		exit(EXIT_FAILURE);
+	}
 }
 
 void	free_node(t_node *node, int count)
@@ -70,8 +77,6 @@ int	main(int args, char *argv[])
 	node_a = init_node(args, argv);
 	node_b = init_node(0, NULL);
 	sort = pre_sort(node_a);
-	// print_intptr(sort, node_a->val);
-	is_unique(args-1,argv+1);
 	free_node(node_a, node_a->val);
 	free_node(node_b, node_b->val);
 	free(sort);

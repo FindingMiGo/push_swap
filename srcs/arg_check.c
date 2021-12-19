@@ -6,7 +6,7 @@
 /*   By: tisoya <tisoya@student.42tokyo.jp>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/16 12:14:42 by tisoya            #+#    #+#             */
-/*   Updated: 2021/12/19 16:34:32 by tisoya           ###   ########.fr       */
+/*   Updated: 2021/12/19 16:49:43 by tisoya           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,10 +34,7 @@ int	is_digit_str(char *str)
 	while (str[i])
 	{
 		if (!ft_isdigit(str[i]))
-		{
-			write(2, "Error\n", 6);
 			return (0);
-		}
 		if (str[i])
 			i++;
 	}
@@ -54,15 +51,12 @@ int	is_unique(int args, char *argv[])
 	while (i < args)
 	{
 		j = i + 1;
-		while (i + j < args)
+		while (j < args)
 		{
 			if (ft_strncmp(argv[i], argv[j], ft_strlen(argv[i])))
 				j++;
 			else
-			{
-				write(2, "Error\n", 6);
-				exit(1);
-			}
+				return (0);
 		}
 		i++;
 	}
