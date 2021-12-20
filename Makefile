@@ -28,3 +28,6 @@ test3 : $(NAME)
 
 test : $(NAME)
 	bash debug.sh
+
+rand :
+	for i in `seq 1 100`;do echo -n $RANDOM' ';done

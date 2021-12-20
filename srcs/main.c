@@ -6,7 +6,7 @@
 /*   By: tisoya <tisoya@student.42tokyo.jp>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/08 16:10:53 by tisoya            #+#    #+#             */
-/*   Updated: 2021/12/19 16:46:55 by tisoya           ###   ########.fr       */
+/*   Updated: 2021/12/20 11:12:52 by tisoya           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -77,6 +77,10 @@ int	main(int args, char *argv[])
 	node_a = init_node(args, argv);
 	node_b = init_node(0, NULL);
 	sort = pre_sort(node_a);
+	print_intptr(sort, node_a->val);
+	// printf("%d\n", node_a->val);
+	// printf("1:%d %d\n", node_a->val / 3, sort[node_a->val / 3]);
+	// printf("1:%d %d\n", node_a->val * 2 / 3, sort[node_a->val * 2 / 3]);
 	free_node(node_a, node_a->val);
 	free_node(node_b, node_b->val);
 	free(sort);
