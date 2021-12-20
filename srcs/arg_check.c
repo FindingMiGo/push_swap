@@ -6,7 +6,7 @@
 /*   By: tisoya <tisoya@student.42tokyo.jp>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/16 12:14:42 by tisoya            #+#    #+#             */
-/*   Updated: 2021/12/20 16:28:46 by tisoya           ###   ########.fr       */
+/*   Updated: 2021/12/20 16:43:58 by tisoya           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,38 +24,30 @@ int	is_sorted(t_node *node)
 	return (1);
 }
 
-int	is_digit_str(char *str)
+int	is_digit_str(int as, char *av[])
 {
 	size_t	i;
+	size_t	j;
+	char	*str;
 
-	i = 0;
-	if (str[0] == '-' && str[1] != '\0')
-		i++;
-	while (str[i])
+	j = 0;
+	while (j < as)
 	{
-		if (!ft_isdigit(str[i]))
-			return (0);
-		if (str[i])
+		i = 0;
+		str = av[j];
+		if (str[0] == '-' && str[1] != '\0')
 			i++;
+		while (str[i])
+		{
+			// printf("%c(%d) is str?\n", str[i],str[i]);
+			if (!ft_isdigit(str[i]))
+				return (0);
+			if (str[i])
+				i++;
+		}
+		j++;
 	}
 	return (1);
-}
-
-void	arg_check(int as, char *av[])
-{
-	size_t	i;
-
-	i = 0;
-	while (i < as)
-	{
-		if (!is_digit_str(av[i]))
-		{
-			write(2, "Error\n", 6);
-			write(2, "nod digit\n", 10);
-			exit(EXIT_FAILURE);
-		}
-		i++;
-	}
 }
 
 int	is_unique(t_node *node)

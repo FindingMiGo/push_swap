@@ -6,7 +6,7 @@
 /*   By: tisoya <tisoya@student.42tokyo.jp>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/08 16:10:53 by tisoya            #+#    #+#             */
-/*   Updated: 2021/12/20 16:28:48 by tisoya           ###   ########.fr       */
+/*   Updated: 2021/12/20 16:45:14 by tisoya           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,12 +52,18 @@ int	main(int args, char *argv[])
 
 	if (args < 2)
 		exit(1);
-	arg_check(args - 1, argv + 1);
+	if (!is_digit_str(args - 1, argv + 1))
+	{
+		write(2, "Error\n", 6);
+		write(2, "not digit str\n", 14);
+		return 0;
+	}
 	node_a = init_node(args, argv);
 	node_b = init_node(0, NULL);
 	sort = pre_sort(node_a);
 	if (!is_unique(node_a))
 	{
+		write(2, "Error\n", 6);
 		write(2, "not unique\n", 11);
 		free(sort);
 		free_node(node_a, node_a->val);
