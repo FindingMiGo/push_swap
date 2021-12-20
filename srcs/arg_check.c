@@ -6,7 +6,7 @@
 /*   By: tisoya <tisoya@student.42tokyo.jp>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/16 12:14:42 by tisoya            #+#    #+#             */
-/*   Updated: 2021/12/20 12:58:30 by tisoya           ###   ########.fr       */
+/*   Updated: 2021/12/20 16:28:46 by tisoya           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,33 +41,39 @@ int	is_digit_str(char *str)
 	return (1);
 }
 
-int	is_unique(int as, char *av[])
+void	arg_check(int as, char *av[])
 {
 	size_t	i;
-	size_t	j;
-	size_t	len1;
-	size_t	len2;
 
 	i = 0;
-	j = 0;
 	while (i < as)
 	{
-		j = i + 1;
-		while (j < as)
+		if (!is_digit_str(av[i]))
 		{
-			len1 = ft_strlen(av[i]);
-			len2 = ft_strlen(av[j]);
-			if (ft_strncmp(av[i], av[j], len1))
-				j++;
-			else
-			{
-				if (len1 != len2)
-					j++;
-				else
-					return (0);
-			}
+			write(2, "Error\n", 6);
+			write(2, "nod digit\n", 10);
+			exit(EXIT_FAILURE);
 		}
 		i++;
+	}
+}
+
+int	is_unique(t_node *node)
+{
+	t_node	*tmp;
+
+	node = node->next;
+	while (node->next->index != 0)
+	{
+		tmp = node->next;
+		while (tmp->index != 0)
+		{
+			// printf("%d <==> %d\n", node->val, tmp->val);
+			if (node->val == tmp->val)
+				return 0;
+			tmp = tmp->next;
+		}
+		node = node->next;
 	}
 	return (1);
 }

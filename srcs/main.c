@@ -6,7 +6,7 @@
 /*   By: tisoya <tisoya@student.42tokyo.jp>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/08 16:10:53 by tisoya            #+#    #+#             */
-/*   Updated: 2021/12/20 11:12:52 by tisoya           ###   ########.fr       */
+/*   Updated: 2021/12/20 16:28:48 by tisoya           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,27 +25,6 @@ void	size_branch(t_node *node_a, t_node *node_b)
 		case_three(node_a);
 	else if (size <= 6)
 		case_ngt_six(node_a, node_b);
-}
-
-void	arg_check(int as, char *av[])
-{
-	size_t	i;
-
-	i = 0;
-	while (i < as)
-	{
-		if (!is_digit_str(av[i]))
-		{
-			write(2, "Error\n", 6);
-			exit(EXIT_FAILURE);
-		}
-		i++;
-	}
-	if (!is_unique(as, av))
-	{
-		write(2, "Error\n", 6);
-		exit(EXIT_FAILURE);
-	}
 }
 
 void	free_node(t_node *node, int count)
@@ -77,6 +56,14 @@ int	main(int args, char *argv[])
 	node_a = init_node(args, argv);
 	node_b = init_node(0, NULL);
 	sort = pre_sort(node_a);
+	if (!is_unique(node_a))
+	{
+		write(2, "not unique\n", 11);
+		free(sort);
+		free_node(node_a, node_a->val);
+		free_node(node_b, node_b->val);
+		return 0;
+	}
 	print_intptr(sort, node_a->val);
 	// printf("%d\n", node_a->val);
 	// printf("1:%d %d\n", node_a->val / 3, sort[node_a->val / 3]);
