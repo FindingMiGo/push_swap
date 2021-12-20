@@ -1,3 +1,4 @@
 *.o
 push_swap
 libft/
+*.txt
