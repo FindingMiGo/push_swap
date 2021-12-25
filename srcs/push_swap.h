@@ -6,7 +6,7 @@
 /*   By: tisoya <tisoya@student.42tokyo.jp>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/08 16:04:27 by tisoya            #+#    #+#             */
-/*   Updated: 2021/12/20 16:37:38 by tisoya           ###   ########.fr       */
+/*   Updated: 2021/12/20 22:03:20 by tisoya           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,10 +26,9 @@ typedef struct s_node
 
 typedef struct s_sort
 {
-	int				val;
-	t_node			*node;
-	struct s_node	*prev;
-	struct s_node	*next;
+	int		*ptr;
+	size_t	size;
+	int		cr_min;
 }	t_sort;
 
 // base_action.c
@@ -56,7 +55,7 @@ t_node	*init_node(int args, char *argv[]);
 void	re_index(t_node *node);
 
 // pre_sort.c
-int	*pre_sort(t_node *node);
+t_sort	*pre_sort(t_node *node);
 
 // arg_check.c
 int		is_sorted(t_node *node);
@@ -67,7 +66,12 @@ int		atoi_and_errcheck(char *str, t_node *node, size_t i);
 void	print_node(t_node *node, int count);
 void	print_intptr(int *sort, int size);
 
+// large_arg_act.c
+void	case_gt_six(t_node *node_a, t_node *node_b, t_sort *sort);
+
 void	free_node(t_node *node, int count);
 int		is_unique(t_node *node);
+
+
 
 #endif

@@ -6,7 +6,7 @@
 /*   By: tisoya <tisoya@student.42tokyo.jp>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/16 12:07:46 by tisoya            #+#    #+#             */
-/*   Updated: 2021/12/19 01:06:55 by tisoya           ###   ########.fr       */
+/*   Updated: 2021/12/20 22:19:48 by tisoya           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,20 +48,25 @@ static void	quick_sort(int *sort, size_t left, size_t right)
 	quick_sort(sort, part, right);
 }
 
-int	*pre_sort(t_node *node)
+t_sort	*pre_sort(t_node *node)
 {
-	int	*ret;
-	int	tmp;
+	t_sort	*sort;
+	int		*ptr;
+	int		tmp;
 
-	ret = (int *)malloc(sizeof(int) * node->val);
-	if (!ret)
+	sort = (t_sort *)malloc(sizeof(t_sort));
+	ptr = (int *)malloc(sizeof(int) * node->val);
+	if (!ptr)
 		return (NULL);
 	node = node->next;
 	while (node->index != 0)
 	{
-		ret[node->index - 1] = node->val;
+		ptr[node->index - 1] = node->val;
 		node = node->next;
 	}
-	quick_sort(ret, 0, node->val - 1);
-	return (ret);
+	quick_sort(ptr, 0, node->val - 1);
+	sort->ptr = ptr;
+	sort->size = node->val;
+	sort->cr_min = ptr[0];
+	return (sort);
 }

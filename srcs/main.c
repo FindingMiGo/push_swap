@@ -6,13 +6,13 @@
 /*   By: tisoya <tisoya@student.42tokyo.jp>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/08 16:10:53 by tisoya            #+#    #+#             */
-/*   Updated: 2021/12/20 16:45:14 by tisoya           ###   ########.fr       */
+/*   Updated: 2021/12/23 16:49:29 by tisoya           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-void	size_branch(t_node *node_a, t_node *node_b)
+void	size_branch(t_node *node_a, t_node *node_b, t_sort *sort)
 {
 	size_t	size;
 
@@ -25,6 +25,8 @@ void	size_branch(t_node *node_a, t_node *node_b)
 		case_three(node_a);
 	else if (size <= 6)
 		case_ngt_six(node_a, node_b);
+	else
+		case_gt_six(node_a, node_b, sort);
 }
 
 void	free_node(t_node *node, int count)
@@ -44,11 +46,17 @@ void	free_node(t_node *node, int count)
 	free(head);
 }
 
+void	free_sort(t_sort *sort)
+{
+	free(sort->ptr);
+	free(sort);
+}
+
 int	main(int args, char *argv[])
 {
 	t_node	*node_a;
 	t_node	*node_b;
-	int		*sort;
+	t_sort	*sort;
 
 	if (args < 2)
 		exit(1);
@@ -56,7 +64,7 @@ int	main(int args, char *argv[])
 	{
 		write(2, "Error\n", 6);
 		write(2, "not digit str\n", 14);
-		return 0;
+		return (0);
 	}
 	node_a = init_node(args, argv);
 	node_b = init_node(0, NULL);
@@ -65,17 +73,19 @@ int	main(int args, char *argv[])
 	{
 		write(2, "Error\n", 6);
 		write(2, "not unique\n", 11);
-		free(sort);
+		free_sort(sort);
 		free_node(node_a, node_a->val);
 		free_node(node_b, node_b->val);
-		return 0;
+		return (0);
 	}
-	print_intptr(sort, node_a->val);
-	// printf("%d\n", node_a->val);
-	// printf("1:%d %d\n", node_a->val / 3, sort[node_a->val / 3]);
-	// printf("1:%d %d\n", node_a->val * 2 / 3, sort[node_a->val * 2 / 3]);
+	// print_node(node_a, 1);
+	// print_node(node_b, 1);
+	// push(node_a,node_b, 1);
+	// print_node(node_a, 1);
+	// print_node(node_b, 1);
+	size_branch(node_a, node_b, sort);
 	free_node(node_a, node_a->val);
 	free_node(node_b, node_b->val);
-	free(sort);
+	free_sort(sort);
 	return (0);
 }

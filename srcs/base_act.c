@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   base_action.c                                      :+:      :+:    :+:   */
+/*   base_act.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: tisoya <tisoya@student.42tokyo.jp>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/16 11:59:46 by tisoya            #+#    #+#             */
-/*   Updated: 2021/12/16 12:03:31 by tisoya           ###   ########.fr       */
+/*   Updated: 2021/12/23 17:05:26 by tisoya           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,6 +44,7 @@ void	push(t_node *node1, t_node *node2, int ab)
 
 	if (node1->val < 1)
 		return ;
+	// printf("size1:%d\n", node1->val);
 	head1 = node1;
 	tmp1 = node1->next;
 	head1->next = tmp1->next;
@@ -54,12 +55,13 @@ void	push(t_node *node1, t_node *node2, int ab)
 	tmp1->next = tmp2;
 	head2->next = tmp1;
 	tmp2->prev = tmp1;
-	node1->val -= 1;
-	node2->val += 1;
+	head1->val--;
+	head2->val++;
 	if (ab == 1)
 		write(1, "pb\n", 3);
 	else if (ab == 2)
 		write(1, "pa\n", 3);
+	// printf("size2:%d\n", node1->val);
 }
 
 void	r_rot(t_node *node, int ab)
