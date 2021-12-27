@@ -1,5 +1,4 @@
-rm args.txt
-for ((i=0 ; i<100 ; i++))
-do
-echo -n $RANDOM' ' >> args.txt
-done
+#!/usr/bin/bash
+ARG=`seq -100 100 | shuf | head -n 7 | xargs echo`;
+echo $ARG > log.txt
+./push_swap $ARG > result.txt

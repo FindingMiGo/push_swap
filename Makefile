@@ -23,10 +23,17 @@ fclean :
 ARG7 := `seq -100 100 | shuf | head -n 7 | xargs echo`
 ARG100 := `seq -100 100 | shuf | head -n 100 | xargs echo`
 
+test : $(NAME)
+	./$(NAME) 6 4 5 3 2 0 1 10 9 100 99
+
 test7 : $(NAME)
 	./$(NAME) $(ARG7)
 
 test100 : $(NAME)
-	./$(NAME) $(ARG100)
+	sh debug.sh > args.txt
+	cat args.txt | xargs ./$(NAME) | ./chck
+
+chck :
+	curl https://projects.intra.42.fr/uploads/document/document/6391/checker_linux -o chck
 
 .PHONY: all clean fclean re bonus

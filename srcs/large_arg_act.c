@@ -6,7 +6,7 @@
 /*   By: tisoya <tisoya@student.42tokyo.jp>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/20 17:21:53 by tisoya            #+#    #+#             */
-/*   Updated: 2021/12/27 16:41:06 by tisoya           ###   ########.fr       */
+/*   Updated: 2021/12/27 23:28:53 by tisoya           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,7 +55,7 @@ int	get_pushcount_btoa(t_node *node, int p, int left, int right)
 	node = node->next;
 	while (node != head && node->val >= left && node->val <= right)
 	{
-		if (node->val <= p)
+		if (node->val > p)
 			count++;
 		node = node->next;
 	}
@@ -76,40 +76,58 @@ void	btoa(t_stacks *stacks, t_sort *sort, int left, int right)
 	pcount = 0;
 	rcount = 0;
 
-	if (right == left)
-		return ;
-		// push(node_b, node_a, 2);
 	p = (left + right) / 2;
-	printf("p:%d\n", p);
 	count = get_pushcount_btoa(node_b, sort->ptr[p], sort->ptr[left], sort->ptr[right]);
-	printf("%d\n", count);
-	while (count > 0)
+	// printf("left:%d right:%d\n",left,right);
+	if (right == left){
+		push(node_b, node_a, 2);
+		return ;
+	}
+	if (right - left == 1)
 	{
-		if (node_b->next->val <= sort->ptr[p])
+		if (node_b->next->val < node_b->next->next->val)
+			swap(node_b, 2);
+		push(node_b, node_a, 2);
+		push(node_b, node_a, 2);
+		return ;
+	}
+	// printf("p:%d count:%d\n", p, count);
+	// if (p == 2)
+	// {
+	// 	printf("pval:%d\n", sort->ptr[p]);
+	// 	print_node(node_b, 1, 0);
+	// 	exit(1);
+	// }
+	while (count>0)
+	{
+		if (node_b->next->val > sort->ptr[p])
 		{
-			rot(node_b, 1);
-			rcount++;
-		}
-		else if (node_b->next->val > sort->ptr[p])
-		{
-			push(node_b, node_a, 1);
+			push(node_b, node_a, 2);
 			pcount++;
 			count--;
-
+		}
+		else
+		{
+			// printf("left:%d right:%d\n",left,right);
+			// printf("p:%d count:%d\n", p, count);
+			// print_node(node_b, 1, 0);
+			rot(node_b, 2);
+			rcount++;
 		}
 	}
-	while (rcount > 0)
+	while (rcount>0)
 	{
-		r_rot(node_b, 1);
+
+		r_rot(node_b, 2);
 		rcount--;
 	}
-	while (pcount > 0)
+	while (pcount>0)
 	{
 		push(node_a, node_b, 1);
 		pcount--;
 	}
-	// btoa(stacks, sort, left, p);
-	// btoa(stacks, sort, p+1, right);
+	btoa(stacks, sort, p+1, right);
+	btoa(stacks, sort, left, p);
 }
 
 void	part(t_stacks *stacks, t_sort *sort, int left, int right)
@@ -119,16 +137,12 @@ void	part(t_stacks *stacks, t_sort *sort, int left, int right)
 	t_node	*node_a;
 	t_node	*node_b;
 
+
 	node_a = stacks->a;
 	node_b = stacks->b;
-	// if (node_a->val == 3)
-	// 	case_three(node_a);
-	// if (node_a->val == 2)
-	// 	case_two(node_a);
-	if (right == left)
+	if (right <= left)
 		return ;
 	p = (left + right) / 2;
-	// printf("p:%d,val:%d\n", p, sort->ptr[p]);
 	count = get_pushcount(node_a, sort->ptr[p], sort->ptr[left], sort->ptr[right]);
 	while (count > 0)
 	{
@@ -140,21 +154,20 @@ void	part(t_stacks *stacks, t_sort *sort, int left, int right)
 		else if (node_a->next->val > sort->ptr[p])
 			rot(node_a, 1);
 	}
-	// part(stacks, sort, left, p);
 	part(stacks, sort, p + 1, right);
-	// btoa(stacks, sort, left, p);
-	// btoa(stacks, sort, p+1, right);
+	btoa(stacks, sort, left, p);
 }
 
 void	case_gt_six(t_node *node_a, t_node *node_b, t_sort *sort)
 {
 	t_stacks	*stacks;
 
-	print_intptr(sort->ptr, sort->size);
+
 	stacks = (t_stacks *)malloc(sizeof(t_stacks));
 	stacks->a = node_a;
 	stacks->b = node_b;
 	part(stacks, sort, 0, sort->size - 1);
-	print_node(node_a, 1, 0);
-	print_node(node_b, 1, 0);
+	// print_node(node_a, 1, 0);
+	// print_node(node_b, 1, 0);
+	// print_intptr(sort->ptr, sort->size);
 }
