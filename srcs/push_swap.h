@@ -6,7 +6,7 @@
 /*   By: tisoya <tisoya@student.42tokyo.jp>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/08 16:04:27 by tisoya            #+#    #+#             */
-/*   Updated: 2021/12/20 22:03:20 by tisoya           ###   ########.fr       */
+/*   Updated: 2021/12/27 13:06:11 by tisoya           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,6 +30,12 @@ typedef struct s_sort
 	size_t	size;
 	int		cr_min;
 }	t_sort;
+
+typedef struct s_stacks
+{
+	t_node	*a;
+	t_node	*b;
+}	t_stacks;
 
 // base_action.c
 void	swap(t_node *node, int ab);
@@ -63,7 +69,7 @@ int		is_digit_str(int as, char *av[]);
 int		atoi_and_errcheck(char *str, t_node *node, size_t i);
 
 // debug.c
-void	print_node(t_node *node, int count);
+void	print_node(t_node *node, int count, int flag);
 void	print_intptr(int *sort, int size);
 
 // large_arg_act.c

@@ -6,7 +6,7 @@
 /*   By: tisoya <tisoya@student.42tokyo.jp>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/16 12:07:46 by tisoya            #+#    #+#             */
-/*   Updated: 2021/12/20 22:19:48 by tisoya           ###   ########.fr       */
+/*   Updated: 2021/12/25 16:52:45 by tisoya           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,25 +48,43 @@ static void	quick_sort(int *sort, size_t left, size_t right)
 	quick_sort(sort, part, right);
 }
 
-t_sort	*pre_sort(t_node *node)
-{
-	t_sort	*sort;
-	int		*ptr;
-	int		tmp;
+// void	input_vals(t_sort *sort, t_node *node)
+// {
+// 	size_t	count;
 
-	sort = (t_sort *)malloc(sizeof(t_sort));
-	ptr = (int *)malloc(sizeof(int) * node->val);
-	if (!ptr)
+// 	node = node->next;
+// 	while (node->index != 0)
+// 	{
+// 		sort->ptr[node->index - 1] = node->val;
+// 		node = node->next;
+// 	}
+// 	quick_sort(sort->ptr, 0, node->val - 1);
+// }
+
+static int	*sorted_array(t_node *node)
+{
+	int	*a;
+
+	a = (int *)malloc(sizeof(int) * node->val);
+	if (!a)
 		return (NULL);
 	node = node->next;
 	while (node->index != 0)
 	{
-		ptr[node->index - 1] = node->val;
+		a[node->index - 1] = node->val;
 		node = node->next;
 	}
-	quick_sort(ptr, 0, node->val - 1);
-	sort->ptr = ptr;
+	quick_sort(a, 0, node->val - 1);
+	return (a);
+}
+
+t_sort	*pre_sort(t_node *node)
+{
+	t_sort	*sort;
+
+	sort = (t_sort *)malloc(sizeof(t_sort));
+	sort->ptr = sorted_array(node);
 	sort->size = node->val;
-	sort->cr_min = ptr[0];
+	sort->cr_min = sort->ptr[0];
 	return (sort);
 }

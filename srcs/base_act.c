@@ -6,7 +6,7 @@
 /*   By: tisoya <tisoya@student.42tokyo.jp>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/16 11:59:46 by tisoya            #+#    #+#             */
-/*   Updated: 2021/12/23 17:05:26 by tisoya           ###   ########.fr       */
+/*   Updated: 2021/12/25 16:44:36 by tisoya           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,6 +57,7 @@ void	push(t_node *node1, t_node *node2, int ab)
 	tmp2->prev = tmp1;
 	head1->val--;
 	head2->val++;
+
 	if (ab == 1)
 		write(1, "pb\n", 3);
 	else if (ab == 2)
