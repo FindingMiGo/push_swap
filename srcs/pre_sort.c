@@ -6,7 +6,7 @@
 /*   By: tisoya <tisoya@student.42tokyo.jp>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/16 12:07:46 by tisoya            #+#    #+#             */
-/*   Updated: 2021/12/25 16:52:45 by tisoya           ###   ########.fr       */
+/*   Updated: 2021/12/29 21:56:01 by tisoya           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -85,6 +85,7 @@ t_sort	*pre_sort(t_node *node)
 	sort = (t_sort *)malloc(sizeof(t_sort));
 	sort->ptr = sorted_array(node);
 	sort->size = node->val;
-	sort->cr_min = sort->ptr[0];
+	sort->cr_max = sort->size - 1;
+	// printf("max%d\n", sort->cr_max);
 	return (sort);
 }

@@ -6,7 +6,7 @@
 /*   By: tisoya <tisoya@student.42tokyo.jp>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/20 17:21:53 by tisoya            #+#    #+#             */
-/*   Updated: 2021/12/29 15:12:39 by tisoya           ###   ########.fr       */
+/*   Updated: 2021/12/29 22:20:42 by tisoya           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -71,13 +71,27 @@ void	divide(t_stacks *stacks, t_sort *sort, int p, int c)
 	t_node	*b;
 	int		p_count;
 	int		r_count;
+	int		s_count;
 
 	a = stacks->a;
 	b = stacks->b;
 	p_count = 0;
 	r_count = 0;
+	s_count = 0;
 	while (c > 0)
 	{
+		// if (b->next->val == sort->ptr[sort->cr_max])
+		// {
+		// 	push(b, a, 2);
+		// 	rot(a, 1);
+		// 	s_count++;
+		// 	c--;
+		// }
+		if (b->next->val == sort->ptr[sort->cr_max])
+		{
+
+			sort->cr_max -= 1;
+		}
 		if (b->next->val > sort->ptr[p])
 		{
 			push(b, a, 2);
@@ -89,7 +103,14 @@ void	divide(t_stacks *stacks, t_sort *sort, int p, int c)
 			rot(b, 2);
 			r_count++;
 		}
+
 	}
+	// while (s_count > 0)
+	// {
+	// 	r_rot(a, 1);
+	// 	s_count--;
+	// }
+	// print_node(a, 1, 0);
 	replace(stacks, p_count, r_count);
 }
 
@@ -147,10 +168,18 @@ void	atob(t_stacks *stacks, t_sort *sort, int l, int r)
 			rot(node_a, 1);
 	}
 	atob(stacks, sort, p + 1, r);
+	// printf("%d\n", sort->ptr[sort->cr_max]);
 	if (node_a->val == 3)
+	{
 		case_three(node_a);
+		sort->cr_max -= 3;
+	}
 	else if (node_a->val == 2)
+	{
 		case_two(node_a);
+		sort->cr_max -= 2;
+	}
+	// printf("%d\n", sort->ptr[sort->cr_max]);
 	btoa(stacks, sort, l, p);
 }
 
@@ -163,6 +192,6 @@ void	case_gt_six(t_node *node_a, t_node *node_b, t_sort *sort)
 	stacks->b = node_b;
 	atob(stacks, sort, 0, sort->size - 1);
 	free(stacks);
-	print_node(node_a, 1, 0);
-	print_node(node_b, 1, 0);
+	// print_node(node_a, 1, 0);
+	// print_node(node_b, 1, 0);
 }
