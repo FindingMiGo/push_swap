@@ -4,8 +4,8 @@ CC = gcc
 FLAGS = -Wall -Wextra -Werror
 LIBFT = ./libft/libft.a
 
-SRC =	main.c base_act.c double_act.c composite_act.c small_arg_act.c \
-		pre_sort.c arg_check.c init_node.c large_arg_act.c debug.c
+SRC =	main.c base_act.c double_act.c comp_act.c few_args_act.c \
+		pre_sort.c arg_check.c init_node.c many_args_act.c debug.c
 SRCDIR = srcs
 SRCS = $(addprefix $(SRCDIR)/, $(SRC))
 OBJS = $(SRCS:%.c=%.o)
@@ -32,7 +32,9 @@ test7 : $(NAME)
 
 test100 : $(NAME)
 	./debug.sh > args.txt
-	cat args.txt | xargs ./$(NAME)
+	@cat args.txt | xargs ./$(NAME) > result.txt
+	@cat args.txt
+	@cat result.txt | wc -l
 
 chck :
 	curl https://projects.intra.42.fr/uploads/document/document/6391/checker_linux -o chck
