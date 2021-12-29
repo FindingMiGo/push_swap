@@ -6,7 +6,7 @@
 /*   By: tisoya <tisoya@student.42tokyo.jp>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/20 17:21:53 by tisoya            #+#    #+#             */
-/*   Updated: 2021/12/29 22:20:42 by tisoya           ###   ########.fr       */
+/*   Updated: 2021/12/29 23:52:49 by tisoya           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -80,18 +80,6 @@ void	divide(t_stacks *stacks, t_sort *sort, int p, int c)
 	s_count = 0;
 	while (c > 0)
 	{
-		// if (b->next->val == sort->ptr[sort->cr_max])
-		// {
-		// 	push(b, a, 2);
-		// 	rot(a, 1);
-		// 	s_count++;
-		// 	c--;
-		// }
-		if (b->next->val == sort->ptr[sort->cr_max])
-		{
-
-			sort->cr_max -= 1;
-		}
 		if (b->next->val > sort->ptr[p])
 		{
 			push(b, a, 2);
@@ -105,12 +93,6 @@ void	divide(t_stacks *stacks, t_sort *sort, int p, int c)
 		}
 
 	}
-	// while (s_count > 0)
-	// {
-	// 	r_rot(a, 1);
-	// 	s_count--;
-	// }
-	// print_node(a, 1, 0);
 	replace(stacks, p_count, r_count);
 }
 

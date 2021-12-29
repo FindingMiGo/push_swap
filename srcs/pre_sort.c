@@ -6,7 +6,7 @@
 /*   By: tisoya <tisoya@student.42tokyo.jp>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/16 12:07:46 by tisoya            #+#    #+#             */
-/*   Updated: 2021/12/29 21:56:01 by tisoya           ###   ########.fr       */
+/*   Updated: 2021/12/29 23:53:21 by tisoya           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,19 +48,6 @@ static void	quick_sort(int *sort, size_t left, size_t right)
 	quick_sort(sort, part, right);
 }
 
-// void	input_vals(t_sort *sort, t_node *node)
-// {
-// 	size_t	count;
-
-// 	node = node->next;
-// 	while (node->index != 0)
-// 	{
-// 		sort->ptr[node->index - 1] = node->val;
-// 		node = node->next;
-// 	}
-// 	quick_sort(sort->ptr, 0, node->val - 1);
-// }
-
 static int	*sorted_array(t_node *node)
 {
 	int	*a;
@@ -86,6 +73,5 @@ t_sort	*pre_sort(t_node *node)
 	sort->ptr = sorted_array(node);
 	sort->size = node->val;
 	sort->cr_max = sort->size - 1;
-	// printf("max%d\n", sort->cr_max);
 	return (sort);
 }
