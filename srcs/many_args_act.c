@@ -6,7 +6,7 @@
 /*   By: tisoya <tisoya@student.42tokyo.jp>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/20 17:21:53 by tisoya            #+#    #+#             */
-/*   Updated: 2021/12/29 00:03:15 by tisoya           ###   ########.fr       */
+/*   Updated: 2021/12/29 15:12:39 by tisoya           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,6 +46,25 @@ int	numof_over_pivot(t_node *node, int p, int l, int r)
 	return (count);
 }
 
+void	replace(t_stacks *stacks, int p_count, int r_count)
+{
+	t_node	*a;
+	t_node	*b;
+
+	a = stacks->a;
+	b = stacks->b;
+	while (r_count > 0)
+	{
+		r_rot(b, 2);
+		r_count--;
+	}
+	while (p_count > 0)
+	{
+		push(a, b, 1);
+		p_count--;
+	}
+}
+
 void	divide(t_stacks *stacks, t_sort *sort, int p, int c)
 {
 	t_node	*a;
@@ -71,32 +90,18 @@ void	divide(t_stacks *stacks, t_sort *sort, int p, int c)
 			r_count++;
 		}
 	}
-	while (r_count > 0)
-	{
-		r_rot(b, 2);
-		r_count--;
-	}
-	while (p_count > 0)
-	{
-		push(a, b, 1);
-		p_count--;
-	}
+	replace(stacks, p_count, r_count);
 }
 
 void	btoa(t_stacks *stacks, t_sort *sort, int l, int r)
 {
-	int count;
-	int	pcount;
-	int	rcount;
-	int	p;
+	int		count;
+	int		p;
 	t_node	*node_a;
 	t_node	*node_b;
 
 	node_a = stacks->a;
 	node_b = stacks->b;
-	pcount = 0;
-	rcount = 0;
-
 	p = (l + r) / 2;
 	count = numof_over_pivot(node_b, sort->ptr[p], sort->ptr[l], sort->ptr[r]);
 	if (r == l)
@@ -112,31 +117,7 @@ void	btoa(t_stacks *stacks, t_sort *sort, int l, int r)
 		push(node_b, node_a, 2);
 		return ;
 	}
-	divide(stacks,sort,p,count);
-	// while (count > 0)
-	// {
-	// 	if (node_b->next->val > sort->ptr[p])
-	// 	{
-	// 		push(node_b, node_a, 2);
-	// 		pcount++;
-	// 		count--;
-	// 	}
-	// 	else
-	// 	{
-	// 		rot(node_b, 2);
-	// 		rcount++;
-	// 	}
-	// }
-	// while (rcount > 0)
-	// {
-	// 	r_rot(node_b, 2);
-	// 	rcount--;
-	// }
-	// while (pcount > 0)
-	// {
-	// 	push(node_a, node_b, 1);
-	// 	pcount--;
-	// }
+	divide(stacks, sort, p, count);
 	btoa(stacks, sort, p + 1, r);
 	btoa(stacks, sort, l, p);
 }
