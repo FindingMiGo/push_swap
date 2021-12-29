@@ -6,7 +6,7 @@
 /*   By: tisoya <tisoya@student.42tokyo.jp>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/08 16:04:27 by tisoya            #+#    #+#             */
-/*   Updated: 2021/12/27 13:06:11 by tisoya           ###   ########.fr       */
+/*   Updated: 2021/12/29 18:22:15 by tisoya           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,7 +28,7 @@ typedef struct s_sort
 {
 	int		*ptr;
 	size_t	size;
-	int		cr_min;
+	int		cr_max;
 }	t_sort;
 
 typedef struct s_stacks
@@ -78,6 +78,10 @@ void	case_gt_six(t_node *node_a, t_node *node_b, t_sort *sort);
 void	free_node(t_node *node, int count);
 int		is_unique(t_node *node);
 
-
+// recorder.c
+char	*record_array(size_t size);
+void	recorder(char **record, int act);
+void	player(char *record);
+void	optimizer(char *record);
 
 #endif

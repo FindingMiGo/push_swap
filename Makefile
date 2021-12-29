@@ -5,7 +5,8 @@ FLAGS = -Wall -Wextra -Werror
 LIBFT = ./libft/libft.a
 
 SRC =	main.c base_act.c double_act.c comp_act.c few_args_act.c \
-		pre_sort.c arg_check.c init_node.c many_args_act.c debug.c
+		pre_sort.c arg_check.c init_node.c many_args_act.c debug.c \
+		recorder.c
 SRCDIR = srcs
 SRCS = $(addprefix $(SRCDIR)/, $(SRC))
 OBJS = $(SRCS:%.c=%.o)

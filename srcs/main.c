@@ -6,7 +6,7 @@
 /*   By: tisoya <tisoya@student.42tokyo.jp>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/08 16:10:53 by tisoya            #+#    #+#             */
-/*   Updated: 2021/12/25 17:01:43 by tisoya           ###   ########.fr       */
+/*   Updated: 2021/12/29 17:18:28 by tisoya           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,6 +57,7 @@ int	main(int args, char *argv[])
 	t_node	*node_a;
 	t_node	*node_b;
 	t_sort	*sort;
+	char	*record;
 
 	if (args < 2)
 		exit(1);
@@ -69,7 +70,8 @@ int	main(int args, char *argv[])
 	node_a = init_node(args, argv);
 	node_b = init_node(0, NULL);
 	sort = pre_sort(node_a);
-	// print_intptr(sort->ptr, sort->size);
+	record = record_array(node_a->val * 12);
+	recorder(&record, 0);
 	if (!is_unique(node_a))
 	{
 		write(2, "Error\n", 6);
@@ -79,15 +81,13 @@ int	main(int args, char *argv[])
 		free_node(node_b, node_b->val);
 		return (0);
 	}
-	// print_node(node_a, 1);
-	// print_node(node_b, 1);
-	// push(node_a,node_b, 1);
-	// print_node(node_a, 1);
-	// print_node(node_b, 1);
 	size_branch(node_a, node_b, sort);
-	// print_node(node_a, 1);
+	optimizer(record);
+	player(record);
+	// printf("%s\n", record);
 	free_node(node_a, node_a->val);
 	free_node(node_b, node_b->val);
-	// free_sort(sort);
+	free_sort(sort);
+	free(record);
 	return (0);
 }
