@@ -6,7 +6,7 @@
 /*   By: tisoya <tisoya@student.42tokyo.jp>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/16 12:07:46 by tisoya            #+#    #+#             */
-/*   Updated: 2021/12/29 18:32:25 by tisoya           ###   ########.fr       */
+/*   Updated: 2021/12/30 18:11:10 by tisoya           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,6 +60,20 @@ void	optimizer(char *record)
 			record[j] = 1;
 			i = -1;
 		}
+		else if ((record[i] == 8 && record[j] == 9)
+			 || (record[i] == 9 && record[j] == 8))
+		{
+			record[i] = 1;
+			record[j] = 10;
+			i = -1;
+		}
+		else if ((record[i] == 7 && record[j] == 9)
+			 || (record[i] == 9 && record[j] == 7))
+		{
+			record[i] = 1;
+			record[j] = 1;
+			i = -1;
+		}
 		i++;
 	}
 }
@@ -89,6 +103,8 @@ void	player(char *record)
 			write(1, "ra\n", 3);
 		else if (record[i] == 9)
 			write(1, "rb\n", 3);
+		else if (record[i] == 10)
+			write(1, "rr\n", 3);
 		i++;
 	}
 }

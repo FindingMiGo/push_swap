@@ -6,7 +6,7 @@
 /*   By: tisoya <tisoya@student.42tokyo.jp>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/20 17:21:53 by tisoya            #+#    #+#             */
-/*   Updated: 2021/12/29 23:52:49 by tisoya           ###   ########.fr       */
+/*   Updated: 2021/12/30 17:53:19 by tisoya           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -107,8 +107,10 @@ void	btoa(t_stacks *stacks, t_sort *sort, int l, int r)
 	node_b = stacks->b;
 	p = (l + r) / 2;
 	count = numof_over_pivot(node_b, sort->ptr[p], sort->ptr[l], sort->ptr[r]);
-	if (r == l)
+	// printf("l:%d r:%d\n", l, r);
+	if (r <= l)
 	{
+		// printf("pushed index:%d val:%d\n", p, sort->ptr[p]);
 		push(node_b, node_a, 2);
 		return ;
 	}
@@ -116,7 +118,9 @@ void	btoa(t_stacks *stacks, t_sort *sort, int l, int r)
 	{
 		if (node_b->next->val < node_b->next->next->val)
 			swap(node_b, 2);
+		// printf("pushed index:%d val:%d\n", p, node_b->next->val);
 		push(node_b, node_a, 2);
+		// printf("pushed index:%d val:%d\n", p, node_b->next->val);
 		push(node_b, node_a, 2);
 		return ;
 	}
@@ -129,16 +133,22 @@ void	atob(t_stacks *stacks, t_sort *sort, int l, int r)
 {
 	int		count;
 	int		p;
+	int		p2;
+	int		r_count;
 	t_node	*node_a;
 	t_node	*node_b;
 
-
+	r_count = 0;
 	node_a = stacks->a;
 	node_b = stacks->b;
 	if (r - l <= 2)
 		return ;
-	p = (l + r) / 2;
-	count = numof_under_pivot(node_a, sort->ptr[p], sort->ptr[l], sort->ptr[r]);
+	p = l + (r - l)/3;
+	p2 = p + (r - l)/3;
+	// printf("left%d right%d\n", l, r);
+	// printf("p:%d p2:%d\n", p, p2);
+
+	count = numof_under_pivot(node_a, sort->ptr[p2], sort->ptr[l], sort->ptr[r]);
 	while (count > 0)
 	{
 		if (node_a->next->val <= sort->ptr[p])
@@ -146,10 +156,24 @@ void	atob(t_stacks *stacks, t_sort *sort, int l, int r)
 			push(node_a, node_b, 1);
 			count--;
 		}
+		else if (node_a->next->val <= sort->ptr[p2])
+		{
+			push(node_a, node_b, 1);
+			rot(node_b, 2);
+			count--;
+			r_count++;
+		}
 		else if (node_a->next->val > sort->ptr[p])
 			rot(node_a, 1);
 	}
-	atob(stacks, sort, p + 1, r);
+	while (r_count > 0)
+	{
+		r_rot(node_b, 2);
+		r_count--;
+	}
+	// printf("left%d right%d\n", p2+1, r);
+	atob(stacks, sort, p2 + 1, r);
+	// atob(stacks, sort, p + 1, p2);
 	// printf("%d\n", sort->ptr[sort->cr_max]);
 	if (node_a->val == 3)
 	{
@@ -162,7 +186,10 @@ void	atob(t_stacks *stacks, t_sort *sort, int l, int r)
 		sort->cr_max -= 2;
 	}
 	// printf("%d\n", sort->ptr[sort->cr_max]);
+	btoa(stacks, sort, p+1, p2);
 	btoa(stacks, sort, l, p);
+	// print_node(node_a, 1, 0);
+	// print_node(node_b, 1, 0);
 }
 
 void	case_gt_six(t_node *node_a, t_node *node_b, t_sort *sort)

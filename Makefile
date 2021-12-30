@@ -37,6 +37,10 @@ test100 : $(NAME)
 	@cat args.txt
 	@cat result.txt | wc -l
 
+test1 : $(NAME)
+	./$(NAME) 71 -74 85 -78 89 1 -72 9 -59 -41 64 -31 86 35 -80 -58 75 46 -64 -70 > result.txt
+
+
 chck :
 	curl https://projects.intra.42.fr/uploads/document/document/6391/checker_linux -o chck
 
