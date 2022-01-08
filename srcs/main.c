@@ -6,7 +6,7 @@
 /*   By: tisoya <tisoya@student.42tokyo.jp>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/08 16:10:53 by tisoya            #+#    #+#             */
-/*   Updated: 2021/12/29 17:18:28 by tisoya           ###   ########.fr       */
+/*   Updated: 2022/01/08 21:19:32 by tisoya           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,7 +64,6 @@ int	main(int args, char *argv[])
 	if (!is_digit_str(args - 1, argv + 1))
 	{
 		write(2, "Error\n", 6);
-		write(2, "not digit str\n", 14);
 		return (0);
 	}
 	node_a = init_node(args, argv);
@@ -75,7 +74,6 @@ int	main(int args, char *argv[])
 	if (!is_unique(node_a))
 	{
 		write(2, "Error\n", 6);
-		write(2, "not unique\n", 11);
 		free_sort(sort);
 		free_node(node_a, node_a->val);
 		free_node(node_b, node_b->val);
@@ -84,7 +82,6 @@ int	main(int args, char *argv[])
 	size_branch(node_a, node_b, sort);
 	optimizer(record);
 	player(record);
-	// printf("%s\n", record);
 	free_node(node_a, node_a->val);
 	free_node(node_b, node_b->val);
 	free_sort(sort);

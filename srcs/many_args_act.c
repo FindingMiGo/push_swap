@@ -6,7 +6,7 @@
 /*   By: tisoya <tisoya@student.42tokyo.jp>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/20 17:21:53 by tisoya            #+#    #+#             */
-/*   Updated: 2021/12/30 17:53:19 by tisoya           ###   ########.fr       */
+/*   Updated: 2022/01/08 21:17:59 by tisoya           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,7 +65,7 @@ void	replace(t_stacks *stacks, int p_count, int r_count)
 	}
 }
 
-void	divide(t_stacks *stacks, t_sort *sort, int p, int c)
+void	divide(t_stacks *stacks, t_sort *sort, int p[], int c)
 {
 	t_node	*a;
 	t_node	*b;
@@ -80,9 +80,17 @@ void	divide(t_stacks *stacks, t_sort *sort, int p, int c)
 	s_count = 0;
 	while (c > 0)
 	{
-		if (b->next->val > sort->ptr[p])
+		if (b->next->val > sort->ptr[p[1]])
 		{
 			push(b, a, 2);
+			p_count++;
+			c--;
+		}
+		else if (b->next->val > sort->ptr[p[0]])
+		{
+			push(b, a, 2);
+			rot(a, 1);
+			s_count++;
 			p_count++;
 			c--;
 		}
@@ -93,40 +101,91 @@ void	divide(t_stacks *stacks, t_sort *sort, int p, int c)
 		}
 
 	}
+	while (s_count > 0)
+	{
+		r_rot(a, 1);
+		s_count--;
+	}
 	replace(stacks, p_count, r_count);
+}
+
+void	three_sort(t_node *node, t_node *node2)
+{
+	t_node	*n1;
+	t_node	*n2;
+	t_node	*n3;
+
+	n1 = node->next;
+	n2 = n1->next;
+	n3 = n2->next;
+
+	if (n1->val > n2->val && n1->val > n3->val)
+	{
+		push(node, node2, 2);
+	}
+	else if (n2->val > n1->val && n2->val > n3->val)
+	{
+
+		swap(node, 2);
+		push(node, node2, 2);
+	}
+	else if (n3->val > n1->val && n3->val > n2->val)
+	{
+		rot(node, 2);
+		swap(node, 2);
+		push(node, node2, 2);
+		r_rot(node, 2);
+	}
+	n1 = node->next;
+	n2 = n1->next;
+	if (n1->val > n2->val)
+	{
+		push(node, node2, 2);
+		push(node, node2, 2);
+	}
+	else
+	{
+		swap(node, 2);
+		push(node, node2, 2);
+		push(node, node2, 2);
+	}
 }
 
 void	btoa(t_stacks *stacks, t_sort *sort, int l, int r)
 {
 	int		count;
-	int		p;
+	int		p[2];
 	t_node	*node_a;
 	t_node	*node_b;
 
 	node_a = stacks->a;
 	node_b = stacks->b;
-	p = (l + r) / 2;
-	count = numof_over_pivot(node_b, sort->ptr[p], sort->ptr[l], sort->ptr[r]);
-	// printf("l:%d r:%d\n", l, r);
+	p[0] = l + (r - l)/3;
+	p[1] = p[0] + (r - l)/3;
+	count = numof_over_pivot(node_b, sort->ptr[p[0]], sort->ptr[l], sort->ptr[r]);
+	if (r - l == 2)
+	{
+		three_sort(node_b, node_a);
+		return ;
+	}
 	if (r <= l)
 	{
-		// printf("pushed index:%d val:%d\n", p, sort->ptr[p]);
 		push(node_b, node_a, 2);
 		return ;
 	}
 	else if (r - l == 1)
 	{
+		// printf("one sort!\n");
 		if (node_b->next->val < node_b->next->next->val)
 			swap(node_b, 2);
-		// printf("pushed index:%d val:%d\n", p, node_b->next->val);
 		push(node_b, node_a, 2);
-		// printf("pushed index:%d val:%d\n", p, node_b->next->val);
 		push(node_b, node_a, 2);
 		return ;
 	}
 	divide(stacks, sort, p, count);
-	btoa(stacks, sort, p + 1, r);
-	btoa(stacks, sort, l, p);
+	btoa(stacks, sort, p[1]+1, r);
+	btoa(stacks, sort, p[0] + 1, p[1]);
+	btoa(stacks, sort, l, p[0]);
 }
 
 void	atob(t_stacks *stacks, t_sort *sort, int l, int r)
@@ -145,8 +204,6 @@ void	atob(t_stacks *stacks, t_sort *sort, int l, int r)
 		return ;
 	p = l + (r - l)/3;
 	p2 = p + (r - l)/3;
-	// printf("left%d right%d\n", l, r);
-	// printf("p:%d p2:%d\n", p, p2);
 
 	count = numof_under_pivot(node_a, sort->ptr[p2], sort->ptr[l], sort->ptr[r]);
 	while (count > 0)
@@ -171,10 +228,7 @@ void	atob(t_stacks *stacks, t_sort *sort, int l, int r)
 		r_rot(node_b, 2);
 		r_count--;
 	}
-	// printf("left%d right%d\n", p2+1, r);
 	atob(stacks, sort, p2 + 1, r);
-	// atob(stacks, sort, p + 1, p2);
-	// printf("%d\n", sort->ptr[sort->cr_max]);
 	if (node_a->val == 3)
 	{
 		case_three(node_a);
@@ -185,11 +239,8 @@ void	atob(t_stacks *stacks, t_sort *sort, int l, int r)
 		case_two(node_a);
 		sort->cr_max -= 2;
 	}
-	// printf("%d\n", sort->ptr[sort->cr_max]);
 	btoa(stacks, sort, p+1, p2);
 	btoa(stacks, sort, l, p);
-	// print_node(node_a, 1, 0);
-	// print_node(node_b, 1, 0);
 }
 
 void	case_gt_six(t_node *node_a, t_node *node_b, t_sort *sort)
@@ -201,6 +252,4 @@ void	case_gt_six(t_node *node_a, t_node *node_b, t_sort *sort)
 	stacks->b = node_b;
 	atob(stacks, sort, 0, sort->size - 1);
 	free(stacks);
-	// print_node(node_a, 1, 0);
-	// print_node(node_b, 1, 0);
 }
