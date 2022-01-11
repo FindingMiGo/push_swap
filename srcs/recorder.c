@@ -6,7 +6,7 @@
 /*   By: tisoya <tisoya@student.42tokyo.jp>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/16 12:07:46 by tisoya            #+#    #+#             */
-/*   Updated: 2021/12/31 03:05:44 by tisoya           ###   ########.fr       */
+/*   Updated: 2021/12/30 18:11:10 by tisoya           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,15 +46,6 @@ void	optimizer(char *record)
 
 	i = 0;
 	j = 1;
-	while (record[i])
-		i++;
-	i--;
-	while (record[i] == 1)
-	{
-		record[i] = 0;
-		i--;
-	}
-	i = 0;
 	while (record[i + 1])
 	{
 		while (record[i] == 1)
@@ -82,24 +73,6 @@ void	optimizer(char *record)
 			record[i] = 1;
 			record[j] = 1;
 			i = -1;
-		}
-		else if ((record[i] == 6 && record[j] == 8)
-			 || (record[i] == 8 && record[j] == 6))
-		{
-			record[i] = 1;
-			record[j] = 1;
-			i = -1;
-		}
-		else if (record[i] == 6)
-		{
-			while (record[j] == 6 || record[j] == 11 || record[j] == 1)
-				j++;
-			if (record[j] == 7)
-			{
-				record[i] = 11;
-				record[j] = 1;
-				i = -1;
-			}
 		}
 		i++;
 	}
@@ -132,8 +105,6 @@ void	player(char *record)
 			write(1, "rb\n", 3);
 		else if (record[i] == 10)
 			write(1, "rr\n", 3);
-		else if (record[i] == 11)
-			write(1, "rrr\n", 4);
 		i++;
 	}
 }

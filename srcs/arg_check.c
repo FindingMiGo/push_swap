@@ -6,7 +6,7 @@
 /*   By: tisoya <tisoya@student.42tokyo.jp>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/16 12:14:42 by tisoya            #+#    #+#             */
-/*   Updated: 2022/01/08 21:54:54 by tisoya           ###   ########.fr       */
+/*   Updated: 2021/12/20 17:01:05 by tisoya           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,6 +39,7 @@ int	is_digit_str(int as, char *av[])
 			i++;
 		while (str[i])
 		{
+			// printf("%c(%d) is str?\n", str[i],str[i]);
 			if (!ft_isdigit(str[i]))
 				return (0);
 			if (str[i])
@@ -59,6 +60,7 @@ int	is_unique(t_node *node)
 		tmp = node->next;
 		while (tmp->index != 0)
 		{
+			// printf("%d <==> %d\n", node->val, tmp->val);
 			if (node->val == tmp->val)
 			{
 				printf("%d <==> %d\n", node->val, tmp->val);
