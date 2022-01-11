@@ -6,7 +6,7 @@
 /*   By: tisoya <tisoya@student.42tokyo.jp>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/20 17:21:53 by tisoya            #+#    #+#             */
-/*   Updated: 2022/01/08 21:17:59 by tisoya           ###   ########.fr       */
+/*   Updated: 2022/01/08 21:54:47 by tisoya           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -175,7 +175,6 @@ void	btoa(t_stacks *stacks, t_sort *sort, int l, int r)
 	}
 	else if (r - l == 1)
 	{
-		// printf("one sort!\n");
 		if (node_b->next->val < node_b->next->next->val)
 			swap(node_b, 2);
 		push(node_b, node_a, 2);
