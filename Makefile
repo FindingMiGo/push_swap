@@ -20,50 +20,13 @@ $(LIBFT) :
 fclean :
 	make fclean -C ./libft
 	rm -rf $(NAME) $(OBJS)
+	rm checker_linux
 
-ARG7 := `seq -100 100 | shuf | head -n 7 | xargs echo`
-ARG20 := `seq -100 100 | shuf | head -n 20 | xargs echo`
-ARG100 := `seq -100 100 | shuf | head -n 100 | xargs echo`
-ARG150 := `seq -100 100 | shuf | head -n 150 | xargs echo`
+test : $(NAME) checker_linux
+	bash ./debug.sh
 
-test7 : $(NAME)
-	@echo $(ARG7) > args.txt
-	@cat args.txt > result.txt
-	@cat args.txt | xargs ./$(NAME) > result.txt
-	@cat args.txt > cmp.txt
-	@cat result.txt >> cmp.txt
+checker_linux :
+	curl https://projects.intra.42.fr/uploads/document/document/6391/checker_linux -o checker_linux
+	@chmod +x checker_linux
 
-test20 : $(NAME)
-	@echo $(ARG20) > args.txt
-	@cat args.txt > result.txt
-	@cat args.txt | xargs ./$(NAME) > result.txt
-	@cat args.txt > cmp.txt
-	@cat result.txt >> cmp.txt
-
-test100 : $(NAME)
-	@echo $(ARG100) > args.txt
-	@cat args.txt > result.txt
-	@cat args.txt | xargs ./$(NAME) > result.txt
-	@cat args.txt > cmp.txt
-	@cat result.txt >> cmp.txt
-	@cat result.txt | wc -l
-
-test150 : $(NAME)
-	@echo $(ARG150) > args.txt
-	@cat args.txt > result.txt
-	@cat args.txt | xargs ./$(NAME) > result.txt
-	@cat args.txt > cmp.txt
-	@cat result.txt >> cmp.txt
-
-test : $(NAME)
-	@echo "-4 50 13 -99 86 -26 52 79 19 -42 75 97 -38" > args.txt
-	@cat args.txt > result.txt
-	@cat args.txt | xargs ./$(NAME) > result.txt
-	@cat args.txt > cmp.txt
-	@cat result.txt >> cmp.txt
-
-
-chck :
-	curl https://projects.intra.42.fr/uploads/document/document/6391/checker_linux -o chck
-
-.PHONY: all clean fclean re bonus
+.PHONY: all clean fclean re bonus checker

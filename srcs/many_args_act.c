@@ -6,7 +6,7 @@
 /*   By: tisoya <tisoya@student.42tokyo.jp>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/20 17:21:53 by tisoya            #+#    #+#             */
-/*   Updated: 2022/01/12 17:16:31 by tisoya           ###   ########.fr       */
+/*   Updated: 2022/01/12 18:53:50 by tisoya           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -191,7 +191,7 @@ void	btoa(t_stacks *stacks, t_sort *sort, int l, int r)
 	btoa(stacks, sort, l, p);
 }
 
-void	atob(t_stacks *stacks, t_sort *sort, int l, int r)
+void	atob(t_stacks *stacks, t_sort *sort, int l, int r, int fst)
 {
 	int		count;
 	int		p;
@@ -213,24 +213,32 @@ void	atob(t_stacks *stacks, t_sort *sort, int l, int r)
 		if (node_a->next->val <= sort->ptr[p])
 		{
 			push(node_a, node_b, 1);
+			if (fst == 0)
+			{
+				rot(node_b, 2);
+				r_count++;
+			}
 			count--;
 		}
 		else if (node_a->next->val <= sort->ptr[p2])
 		{
 			push(node_a, node_b, 1);
-			rot(node_b, 2);
+			if (fst == 1)
+			{
+				rot(node_b, 2);
+				r_count++;
+			}
 			count--;
-			r_count++;
 		}
 		else if (node_a->next->val > sort->ptr[p])
 			rot(node_a, 1);
 	}
-	while (r_count > 0)
+	while (r_count > 0 && fst == 1)
 	{
 		r_rot(node_b, 2);
 		r_count--;
 	}
-	atob(stacks, sort, p2 + 1, r);
+	atob(stacks, sort, p2 + 1, r, 1);
 	// atob(stacks, sort, p + 1, p2);
 	// atob(stacks, sort, l, p);
 	if (node_a->val == 3)
@@ -255,7 +263,7 @@ void	case_gt_six(t_node *node_a, t_node *node_b, t_sort *sort)
 	stacks = (t_stacks *)malloc(sizeof(t_stacks));
 	stacks->a = node_a;
 	stacks->b = node_b;
-	atob(stacks, sort, 0, sort->size - 1);
+	atob(stacks, sort, 0, sort->size - 1, 0);
 	free(stacks);
 	// print_node(node_a, 1, 0);
 	// print_node(node_b, 1, 0);
