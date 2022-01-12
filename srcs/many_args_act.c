@@ -6,7 +6,7 @@
 /*   By: tisoya <tisoya@student.42tokyo.jp>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/20 17:21:53 by tisoya            #+#    #+#             */
-/*   Updated: 2022/01/12 16:20:53 by tisoya           ###   ########.fr       */
+/*   Updated: 2022/01/12 17:16:31 by tisoya           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,8 +61,8 @@ void	replace(t_stacks *stacks, int p_count, int r_count)
 	while (p_count > 0)
 	{
 		push(a, b, 1);
-		printf("replace %d\n", b->next->val);
-		fflush(stdout);
+		// printf("replace %d\n", b->next->val);
+		// fflush(stdout);
 		p_count--;
 	}
 }
@@ -84,20 +84,20 @@ void	divide(t_stacks *stacks, t_sort *sort, int p, int p2, int c)
 	{
 		if (b->next->val > sort->ptr[p2])
 		{
-			printf("wat %d > %d\n", b->next->val, sort->ptr[p2]);
+			// printf("wat %d > %d\n", b->next->val, sort->ptr[p2]);
 			push(b, a, 2);
-			printf("pushing1 %d\n", a->next->val);
-			fflush(stdout);
+			// printf("pushing1 %d\n", a->next->val);
+			// fflush(stdout);
 			p_count++;
 			c--;
 		}
 		else if (b->next->val > sort->ptr[p])
 		{
-			printf("wat %d > %d\n", b->next->val, sort->ptr[p]);
+			// printf("wat %d > %d\n", b->next->val, sort->ptr[p]);
 			push(b, a, 2);
-			printf("pushing2 %d\n", a->next->val);
-			fflush(stdout);
-			printf("rot %d\n", a->next->val);
+			// printf("pushing2 %d\n", a->next->val);
+			// fflush(stdout);
+			// printf("rot %d\n", a->next->val);
 			rot(a, 1);
 			p_count++;
 			s_count++;
@@ -130,15 +130,15 @@ void	btoa(t_stacks *stacks, t_sort *sort, int l, int r)
 
 	node_a = stacks->a;
 	node_b = stacks->b;
-	p2 = (l + r) / 2;
-	p = (l + p2) / 2;
-	count = numof_over_pivot(node_b, sort->ptr[p2], sort->ptr[l], sort->ptr[r]);
-	printf("\nleft:%d right:%d\n", l, r);
-	printf("p:%d p2:%d\n", p ,p2);
-	printf("count:%d\n", count);
-	print_node(node_a, 1, 0);
-	print_node(node_b, 1, 0);
-	fflush(stdout);
+	p = (l + r) / 2;
+	p2 = (p + r) / 2;
+	count = numof_over_pivot(node_b, sort->ptr[p], sort->ptr[l], sort->ptr[r]);
+	// printf("\nleft:%d right:%d\n", l, r);
+	// printf("p:%d p2:%d\n", p ,p2);
+	// printf("count:%d\n", count);
+	// print_node(node_a, 1, 0);
+	// print_node(node_b, 1, 0);
+	// fflush(stdout);
 	// print_node(node_b, 1, 0);
 	// if (node_b->val == 3)
 	// {
@@ -169,8 +169,8 @@ void	btoa(t_stacks *stacks, t_sort *sort, int l, int r)
 	{
 		if (node_b->val == 0)
 			return ;
-		printf("pushing %d\n", node_b->next->val);
-		fflush(stdout);
+		// printf("pushing %d\n", node_b->next->val);
+		// fflush(stdout);
 		push(node_b, node_a, 2);
 		return ;
 	}
@@ -178,10 +178,10 @@ void	btoa(t_stacks *stacks, t_sort *sort, int l, int r)
 	{
 		if (node_b->next->val < node_b->next->next->val)
 			swap(node_b, 2);
-		printf("pushing %d\n", node_b->next->val);
+		// printf("pushing %d\n", node_b->next->val);
 		push(node_b, node_a, 2);
-		printf("pushing %d\n", node_b->next->val);
-		fflush(stdout);
+		// printf("pushing %d\n", node_b->next->val);
+		// fflush(stdout);
 		push(node_b, node_a, 2);
 		return ;
 	}

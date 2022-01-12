@@ -22,8 +22,9 @@ fclean :
 	rm -rf $(NAME) $(OBJS)
 
 ARG7 := `seq -100 100 | shuf | head -n 7 | xargs echo`
-ARG20 := `seq -100 100 | shuf | head -n 13 | xargs echo`
+ARG20 := `seq -100 100 | shuf | head -n 20 | xargs echo`
 ARG100 := `seq -100 100 | shuf | head -n 100 | xargs echo`
+ARG150 := `seq -100 100 | shuf | head -n 150 | xargs echo`
 
 test7 : $(NAME)
 	@echo $(ARG7) > args.txt
@@ -34,6 +35,21 @@ test7 : $(NAME)
 
 test20 : $(NAME)
 	@echo $(ARG20) > args.txt
+	@cat args.txt > result.txt
+	@cat args.txt | xargs ./$(NAME) > result.txt
+	@cat args.txt > cmp.txt
+	@cat result.txt >> cmp.txt
+
+test100 : $(NAME)
+	@echo $(ARG100) > args.txt
+	@cat args.txt > result.txt
+	@cat args.txt | xargs ./$(NAME) > result.txt
+	@cat args.txt > cmp.txt
+	@cat result.txt >> cmp.txt
+	@cat result.txt | wc -l
+
+test150 : $(NAME)
+	@echo $(ARG150) > args.txt
 	@cat args.txt > result.txt
 	@cat args.txt | xargs ./$(NAME) > result.txt
 	@cat args.txt > cmp.txt

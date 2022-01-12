@@ -6,7 +6,7 @@
 /*   By: tisoya <tisoya@student.42tokyo.jp>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/08 16:10:53 by tisoya            #+#    #+#             */
-/*   Updated: 2022/01/12 03:31:46 by tisoya           ###   ########.fr       */
+/*   Updated: 2022/01/12 17:18:40 by tisoya           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -82,7 +82,7 @@ int	main(int args, char *argv[])
 		return (0);
 	}
 	size_branch(node_a, node_b, sort);
-	// optimizer(record);
+	optimizer(record);
 	player(record);
 	free_node(node_a, node_a->val);
 	free_node(node_b, node_b->val);
