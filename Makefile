@@ -22,23 +22,29 @@ fclean :
 	rm -rf $(NAME) $(OBJS)
 
 ARG7 := `seq -100 100 | shuf | head -n 7 | xargs echo`
+ARG20 := `seq -100 100 | shuf | head -n 13 | xargs echo`
 ARG100 := `seq -100 100 | shuf | head -n 100 | xargs echo`
 
-test : $(NAME)
-	./$(NAME) 6 4 5 3 2 0 1 10 9 100 99
-
 test7 : $(NAME)
-	seq -100 100 | shuf | head -n 7 | xargs echo > args.txt
-	cat args.txt | xargs ./$(NAME) > result.txt
-
-test100 : $(NAME)
-	./debug.sh > args.txt
+	@echo $(ARG7) > args.txt
+	@cat args.txt > result.txt
 	@cat args.txt | xargs ./$(NAME) > result.txt
-	@cat args.txt
-	@cat result.txt | wc -l
+	@cat args.txt > cmp.txt
+	@cat result.txt >> cmp.txt
 
-test1 : $(NAME)
-	./$(NAME) 71 -74 85 -78 89 1 -72 9 -59 -41 64 -31 86 35 -80 -58 75 46 -64 -70 > result.txt
+test20 : $(NAME)
+	@echo $(ARG20) > args.txt
+	@cat args.txt > result.txt
+	@cat args.txt | xargs ./$(NAME) > result.txt
+	@cat args.txt > cmp.txt
+	@cat result.txt >> cmp.txt
+
+test : $(NAME)
+	@echo "-4 50 13 -99 86 -26 52 79 19 -42 75 97 -38" > args.txt
+	@cat args.txt > result.txt
+	@cat args.txt | xargs ./$(NAME) > result.txt
+	@cat args.txt > cmp.txt
+	@cat result.txt >> cmp.txt
 
 
 chck :
