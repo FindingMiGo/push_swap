@@ -6,7 +6,7 @@
 /*   By: tisoya <tisoya@student.42tokyo.jp>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/20 17:21:53 by tisoya            #+#    #+#             */
-/*   Updated: 2022/01/12 18:53:50 by tisoya           ###   ########.fr       */
+/*   Updated: 2022/01/14 18:44:10 by tisoya           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -127,7 +127,6 @@ void	btoa(t_stacks *stacks, t_sort *sort, int l, int r)
 	t_node	*node_b;
 	int		r_count;
 
-
 	node_a = stacks->a;
 	node_b = stacks->b;
 	p = (l + r) / 2;
@@ -144,47 +143,58 @@ void	btoa(t_stacks *stacks, t_sort *sort, int l, int r)
 	// {
 
 	// }
-
-	if (r - l == 2)
+	if (r - l <= 9)
 	{
-		r_count = 0;
-		while (sort->ptr[r] != node_b->next->val)
+		int i = r-l+1;
+		while (i > 0)
 		{
-			rot(node_b, 2);
-			r_count++;
+			set_max(node_b, 2);
+			push(node_b, node_a, 2);
+			i--;
 		}
-		push(node_b, node_a, 2);
-		while (r_count > 0)
-		{
-			r_rot(node_b, 2);
-			r_count--;
-		}
-		if (node_b->next->val < node_b->next->next->val)
-			swap(node_b, 2);
-		push(node_b, node_a, 2);
-		push(node_b, node_a, 2);
+		i = 0;
 		return ;
 	}
-	if (r <= l)
-	{
-		if (node_b->val == 0)
-			return ;
-		// printf("pushing %d\n", node_b->next->val);
-		// fflush(stdout);
-		push(node_b, node_a, 2);
-		return ;
-	}
-	if (r - l == 1)
-	{
-		if (node_b->next->val < node_b->next->next->val)
-			swap(node_b, 2);
-		// printf("pushing %d\n", node_b->next->val);
-		push(node_b, node_a, 2);
-		// printf("pushing %d\n", node_b->next->val);
-		// fflush(stdout);
-		push(node_b, node_a, 2);
-		return ;
-	}
+	// if (r - l == 2)
+	// {
+	// 	r_count = 0;
+	// 	while (sort->ptr[r] != node_b->next->val)
+	// 	{
+	// 		rot(node_b, 2);
+	// 		r_count++;
+	// 	}
+	// 	push(node_b, node_a, 2);
+	// 	while (r_count > 0)
+	// 	{
+	// 		r_rot(node_b, 2);
+	// 		r_count--;
+	// 	}
+	// 	if (node_b->next->val < node_b->next->next->val)
+	// 		swap(node_b, 2);
+	// 	push(node_b, node_a, 2);
+	// 	push(node_b, node_a, 2);
+	// 	return ;
+	// }
+	// if (r <= l)
+	// {
+	// 	if (node_b->val == 0)
+	// 		return ;
+	// 	// printf("pushing %d\n", node_b->next->val);
+	// 	// fflush(stdout);
+	// 	push(node_b, node_a, 2);
+	// 	return ;
+	// }
+	// if (r - l == 1)
+	// {
+	// 	if (node_b->next->val < node_b->next->next->val)
+	// 		swap(node_b, 2);
+	// 	// printf("pushing %d\n", node_b->next->val);
+	// 	push(node_b, node_a, 2);
+	// 	// printf("pushing %d\n", node_b->next->val);
+	// 	// fflush(stdout);
+	// 	push(node_b, node_a, 2);
+	// 	return ;
+	// }
 	divide(stacks, sort, p, p2, count);
 	btoa(stacks, sort, p2 + 1, r);
 	btoa(stacks, sort, p + 1, p2);
@@ -239,8 +249,6 @@ void	atob(t_stacks *stacks, t_sort *sort, int l, int r, int fst)
 		r_count--;
 	}
 	atob(stacks, sort, p2 + 1, r, 1);
-	// atob(stacks, sort, p + 1, p2);
-	// atob(stacks, sort, l, p);
 	if (node_a->val == 3)
 	{
 		case_three(node_a);

@@ -1,5 +1,5 @@
 #!/usr/bin/bash
-for i in {1..100}
+for i in {1..1000}
 do
 	echo -n $i' '
 	ARG=`seq -100 100 | shuf | head -n 100 | xargs echo`
@@ -16,4 +16,6 @@ do
 	fi
 	echo -e
 done
+cat arg.txt > cmp.txt
+cat result.txt >> cmp.txt
 rm arg.txt result.txt
