@@ -6,7 +6,7 @@
 /*   By: tisoya <tisoya@student.42tokyo.jp>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/20 17:21:53 by tisoya            #+#    #+#             */
-/*   Updated: 2022/01/14 18:47:31 by tisoya           ###   ########.fr       */
+/*   Updated: 2022/01/14 18:55:07 by tisoya           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -153,18 +153,6 @@ void	atob(t_stacks *stacks, t_sort *sort, int l, int r, int fst)
 	r_count = 0;
 	node_a = stacks->a;
 	node_b = stacks->b;
-	if (r - l <= 30)
-	{
-		int i = r-l+1;
-		while (i > 0)
-		{
-			set_min(node_b, 2);
-			push(node_b, node_a, 2);
-			i--;
-		}
-		i = 0;
-		return ;
-	}
 	if (r - l <= 2)
 		return ;
 	p2 = (l + r) / 2;
