@@ -6,7 +6,7 @@
 /*   By: tisoya <tisoya@student.42tokyo.jp>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/08 16:04:27 by tisoya            #+#    #+#             */
-/*   Updated: 2022/01/14 17:22:59 by tisoya           ###   ########.fr       */
+/*   Updated: 2022/01/15 16:31:29 by tisoya           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,13 +28,13 @@ typedef struct s_sort
 {
 	int		*ptr;
 	size_t	size;
-	int		cr_max;
 }	t_sort;
 
 typedef struct s_stacks
 {
 	t_node	*a;
 	t_node	*b;
+	t_sort	*sort;
 }	t_stacks;
 
 // base_action.c
@@ -42,11 +42,6 @@ void	swap(t_node *node, int ab);
 void	push(t_node *node1, t_node *node2, int ab);
 void	r_rot(t_node *node, int ab);
 void	rot(t_node *node, int ab);
-
-// double_action.c
-void	swap_swap(t_node *node1, t_node *node2);
-void	rrot_rrot(t_node *node1, t_node *node2);
-void	rot_rot(t_node *node1, t_node *node2);
 
 // composite_action.c
 void	set_min(t_node *node, int ab);
@@ -84,5 +79,11 @@ char	*record_array(size_t size);
 void	recorder(char **record, int act);
 void	player(char *record);
 void	optimizer(char *record);
+
+// many_args_atob.c
+int		under_pivot(t_node *node, int p, int l, int r);
+void	atob(t_stacks *stacks, t_sort *sort, int l, int r, int fst);
+
+void	btoa(t_stacks *stacks, t_sort *sort, int l, int r);
 
 #endif
