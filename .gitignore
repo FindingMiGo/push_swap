@@ -3,3 +3,4 @@ push_swap
 libft/
 *.txt
 push_swap_tester/
+checker
