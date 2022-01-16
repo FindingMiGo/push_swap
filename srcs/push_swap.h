@@ -6,7 +6,7 @@
 /*   By: tisoya <tisoya@student.42tokyo.jp>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/08 16:04:27 by tisoya            #+#    #+#             */
-/*   Updated: 2022/01/15 16:31:29 by tisoya           ###   ########.fr       */
+/*   Updated: 2022/01/15 16:34:50 by tisoya           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -82,8 +82,8 @@ void	optimizer(char *record);
 
 // many_args_atob.c
 int		under_pivot(t_node *node, int p, int l, int r);
-void	atob(t_stacks *stacks, t_sort *sort, int l, int r, int fst);
+void	atob(t_stacks *stacks, int l, int r, int fst);
 
-void	btoa(t_stacks *stacks, t_sort *sort, int l, int r);
+void	btoa(t_stacks *stacks, int l, int r);
 
 #endif
