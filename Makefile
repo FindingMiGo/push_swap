@@ -20,7 +20,6 @@ $(LIBFT) :
 fclean :
 	make fclean -C ./libft
 	rm -rf $(NAME) $(OBJS)
-	rm checker_linux
 
 test : $(NAME) checker_linux
 	bash ./debug.sh

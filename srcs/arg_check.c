@@ -6,7 +6,7 @@
 /*   By: tisoya <tisoya@student.42tokyo.jp>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/16 12:14:42 by tisoya            #+#    #+#             */
-/*   Updated: 2022/01/16 22:11:37 by tisoya           ###   ########.fr       */
+/*   Updated: 2022/01/16 23:03:16 by tisoya           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,10 +60,7 @@ int	is_unique(t_node *node)
 		while (tmp->index != 0)
 		{
 			if (node->val == tmp->val)
-			{
-				printf("%d <==> %d\n", node->val, tmp->val);
 				return (0);
-			}
 			tmp = tmp->next;
 		}
 		node = node->next;
