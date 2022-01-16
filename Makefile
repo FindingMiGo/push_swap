@@ -24,8 +24,4 @@ fclean :
 test : $(NAME) checker_linux
 	bash ./debug.sh
 
-checker_linux :
-	curl https://projects.intra.42.fr/uploads/document/document/6391/checker_linux -o checker_linux
-	@chmod +x checker_linux
-
 .PHONY: all clean fclean re bonus checker
