@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   small_arg_act.c                                    :+:      :+:    :+:   */
+/*   few_args_act.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: tisoya <tisoya@student.42tokyo.jp>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/08 16:10:53 by tisoya            #+#    #+#             */
-/*   Updated: 2021/12/23 17:59:13 by tisoya           ###   ########.fr       */
+/*   Updated: 2022/01/16 22:08:56 by tisoya           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,7 @@ void	case_two(t_node *node)
 	a = node->next->val;
 	b = node->next->next->val;
 	if (a > b)
-	 swap(node, 1);
+		swap(node, 1);
 }
 
 void	case_three(t_node *node)

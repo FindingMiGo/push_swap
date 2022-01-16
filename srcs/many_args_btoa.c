@@ -6,7 +6,7 @@
 /*   By: tisoya <tisoya@student.42tokyo.jp>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/20 17:21:53 by tisoya            #+#    #+#             */
-/*   Updated: 2022/01/16 18:53:25 by tisoya           ###   ########.fr       */
+/*   Updated: 2022/01/16 22:07:39 by tisoya           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -91,6 +91,20 @@ void	divide(t_stacks *stacks, int p[], int c)
 	replace(stacks, p_count, r_count);
 }
 
+void	btoa_pushall(t_stacks *stacks, int l, int r)
+{
+	int	i;
+
+	i = r - l + 1;
+	while (i > 0)
+	{
+		set_max(stacks->b, 2);
+		push(stacks->b, stacks->a, 2);
+		i--;
+	}
+	return ;
+}
+
 void	btoa(t_stacks *stacks, int l, int r)
 {
 	int		count;
@@ -103,17 +117,11 @@ void	btoa(t_stacks *stacks, int l, int r)
 	node_b = stacks->b;
 	p[0] = (l + r) / 2;
 	p[1] = (p[0] + r) / 2;
-	count = over_pivot(node_b, stacks->sort->ptr[p[0]], stacks->sort->ptr[l], stacks->sort->ptr[r]);
+	count = over_pivot(node_b, stacks->sort->ptr[p[0]],
+			stacks->sort->ptr[l], stacks->sort->ptr[r]);
 	if (r - l <= 9 && r >= l)
 	{
-		int i = r - l + 1;
-		while (i > 0)
-		{
-			set_max(node_b, 2);
-			push(node_b, node_a, 2);
-			i--;
-		}
-		i = 0;
+		btoa_pushall(stacks, l, r);
 		return ;
 	}
 	divide(stacks, p, count);

@@ -6,7 +6,7 @@
 /*   By: tisoya <tisoya@student.42tokyo.jp>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/16 11:59:46 by tisoya            #+#    #+#             */
-/*   Updated: 2021/12/29 16:52:45 by tisoya           ###   ########.fr       */
+/*   Updated: 2022/01/16 22:12:23 by tisoya           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,10 +31,8 @@ void	swap(t_node *node, int ab)
 	tmp2->next = tmp1;
 	if (ab == 1)
 		recorder(NULL, 2);
-		// write(1, "sa\n", 3);
 	else if (ab == 2)
 		recorder(NULL, 3);
-		// write(1, "sb\n", 3);
 }
 
 void	push(t_node *node1, t_node *node2, int ab)
@@ -60,10 +58,8 @@ void	push(t_node *node1, t_node *node2, int ab)
 	head2->val++;
 	if (ab == 1)
 		recorder(NULL, 4);
-		// write(1, "pb\n", 3);
 	else if (ab == 2)
 		recorder(NULL, 5);
-		// write(1, "pa\n", 3);
 }
 
 void	r_rot(t_node *node, int ab)
@@ -85,10 +81,8 @@ void	r_rot(t_node *node, int ab)
 	tmp2->next = tmp1;
 	if (ab == 1)
 		recorder(NULL, 6);
-		// write(1, "rra\n", 4);
 	else if (ab == 2)
 		recorder(NULL, 7);
-		// write(1, "rrb\n", 4);
 }
 
 void	rot(t_node *node, int ab)
@@ -110,9 +104,6 @@ void	rot(t_node *node, int ab)
 	tmp2->next = tmp1;
 	if (ab == 1)
 		recorder(NULL, 8);
-		// write(1, "ra\n", 3);
 	else if (ab == 2)
 		recorder(NULL, 9);
-		// write(1, "rb\n", 3);
 }
-

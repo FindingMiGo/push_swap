@@ -6,7 +6,7 @@
 /*   By: tisoya <tisoya@student.42tokyo.jp>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/15 16:15:54 by tisoya            #+#    #+#             */
-/*   Updated: 2022/01/16 19:21:33 by tisoya           ###   ########.fr       */
+/*   Updated: 2022/01/16 19:22:35 by tisoya           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -86,17 +86,19 @@ void	atob(t_stacks *stacks, int l, int r, int first)
 	node_a = stacks->a;
 	node_b = stacks->b;
 	if (r - l <= 2)
+	{
+		if (node_a->val == 3)
+			case_three(node_a);
+		else if (node_a->val == 2)
+			case_two(node_a);
 		return ;
+	}
 	p[1] = (l + r) / 2;
 	p[0] = (l + p[1]) / 2;
 	count = under_pivot(node_a, stacks->sort->ptr[p[1]],
 			stacks->sort->ptr[l], stacks->sort->ptr[r]);
 	divide_atob(stacks, p, count, first);
 	atob(stacks, p[1] + 1, r, 0);
-	if (node_a->val == 3)
-		case_three(node_a);
-	else if (node_a->val == 2)
-		case_two(node_a);
 	btoa(stacks, p[0] + 1, p[1]);
 	btoa(stacks, l, p[0]);
 }

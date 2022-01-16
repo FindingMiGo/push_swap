@@ -6,7 +6,7 @@
 /*   By: tisoya <tisoya@student.42tokyo.jp>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/16 12:07:46 by tisoya            #+#    #+#             */
-/*   Updated: 2022/01/12 17:22:10 by tisoya           ###   ########.fr       */
+/*   Updated: 2022/01/16 22:27:35 by tisoya           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,28 +63,28 @@ void	optimizer(char *record)
 		while (record[j] == 1)
 			j++;
 		if ((record[i] == 4 && record[j] == 5)
-			 || (record[i] == 5 && record[j] == 4))
+			|| (record[i] == 5 && record[j] == 4))
 		{
 			record[i] = 1;
 			record[j] = 1;
 			i = -1;
 		}
 		else if ((record[i] == 8 && record[j] == 9)
-			 || (record[i] == 9 && record[j] == 8))
+			|| (record[i] == 9 && record[j] == 8))
 		{
 			record[i] = 1;
 			record[j] = 10;
 			i = -1;
 		}
 		else if ((record[i] == 7 && record[j] == 9)
-			 || (record[i] == 9 && record[j] == 7))
+			|| (record[i] == 9 && record[j] == 7))
 		{
 			record[i] = 1;
 			record[j] = 1;
 			i = -1;
 		}
 		else if ((record[i] == 6 && record[j] == 8)
-			 || (record[i] == 8 && record[j] == 6))
+			|| (record[i] == 8 && record[j] == 6))
 		{
 			record[i] = 1;
 			record[j] = 1;
@@ -107,10 +107,11 @@ void	optimizer(char *record)
 
 void	player(char *record)
 {
-	size_t i;
+	size_t	i;
 
 	i = 0;
-	while(record[i])
+	optimizer(record);
+	while (record[i])
 	{
 		while (record[i] == 1)
 			i++;

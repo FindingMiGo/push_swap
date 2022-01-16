@@ -6,7 +6,7 @@
 /*   By: tisoya <tisoya@student.42tokyo.jp>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/16 12:07:46 by tisoya            #+#    #+#             */
-/*   Updated: 2022/01/15 16:18:46 by tisoya           ###   ########.fr       */
+/*   Updated: 2022/01/16 22:09:10 by tisoya           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,7 @@ static int	partition(int *sort, size_t left, size_t right)
 		while (sort[r] >= sort[left] && r > left)
 			r--;
 		if (l >= r)
-			break;
+			break ;
 		tmp = sort[l];
 		sort[l] = sort[r];
 		sort[r] = tmp;

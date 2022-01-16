@@ -6,15 +6,15 @@
 /*   By: tisoya <tisoya@student.42tokyo.jp>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/16 12:23:40 by tisoya            #+#    #+#             */
-/*   Updated: 2022/01/14 18:11:10 by tisoya           ###   ########.fr       */
+/*   Updated: 2022/01/16 22:10:58 by tisoya           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-static t_node *min_addr(t_node *node)
+static t_node	*min_addr(t_node *node)
 {
-	t_node *ret;
+	t_node	*ret;
 	int		min;
 
 	node = node->next;
@@ -32,9 +32,9 @@ static t_node *min_addr(t_node *node)
 	return (ret);
 }
 
-static t_node *max_addr(t_node *node)
+static t_node	*max_addr(t_node *node)
 {
-	t_node *ret;
+	t_node	*ret;
 	int		max;
 
 	node = node->next;

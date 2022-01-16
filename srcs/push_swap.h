@@ -6,7 +6,7 @@
 /*   By: tisoya <tisoya@student.42tokyo.jp>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/08 16:04:27 by tisoya            #+#    #+#             */
-/*   Updated: 2022/01/15 16:34:50 by tisoya           ###   ########.fr       */
+/*   Updated: 2022/01/16 22:18:44 by tisoya           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 # define PUSH_SWAP_H
 
 # include "../libft/libft.h"
-# include<stdio.h>
+# include "../push_swap_debug/push_swap_debug.h"
 
 typedef struct s_node
 {
@@ -63,10 +63,6 @@ t_sort	*pre_sort(t_node *node);
 int		is_sorted(t_node *node);
 int		is_digit_str(int as, char *av[]);
 int		atoi_and_errcheck(char *str, t_node *node, size_t i);
-
-// debug.c
-void	print_node(t_node *node, int count, int flag);
-void	print_intptr(int *sort, int size);
 
 // large_arg_act.c
 void	case_gt_six(t_node *node_a, t_node *node_b, t_sort *sort);
