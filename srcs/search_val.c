@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   comp_act.c                                         :+:      :+:    :+:   */
+/*   search_val.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: tisoya <tisoya@student.42tokyo.jp>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/16 12:23:40 by tisoya            #+#    #+#             */
-/*   Updated: 2022/01/16 22:10:58 by tisoya           ###   ########.fr       */
+/*   Updated: 2022/01/16 23:16:13 by tisoya           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -79,17 +79,17 @@ void	set_min(t_node *node, int ab)
 
 void	set_max(t_node *node, int ab)
 {
-	t_node	*min;
+	t_node	*max;
 	size_t	size;
 
 	re_index(node);
-	min = max_addr(node);
+	max = max_addr(node);
 	size = node->val;
-	if (min->index - 1 <= (size - min->index + 1))
+	if (max->index - 1 <= (size - max->index + 1))
 	{
-		while (node->next != min)
+		while (node->next != max)
 		{
-			if (min->index == 2)
+			if (max->index == 2)
 				swap(node, ab);
 			else
 				rot(node, ab);
@@ -97,7 +97,7 @@ void	set_max(t_node *node, int ab)
 	}
 	else
 	{
-		while (node->next != min)
+		while (node->next != max)
 			r_rot(node, ab);
 	}
 }

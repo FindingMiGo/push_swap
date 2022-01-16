@@ -4,7 +4,7 @@ CC = gcc
 FLAGS = -Wall -Wextra -Werror
 LIBFT = ./libft/libft.a
 
-SRC =	main.c base_act.c comp_act.c few_args_act.c \
+SRC =	main.c base_act.c search_val.c few_args.c \
 		pre_sort.c arg_check.c init_node.c many_args_btoa.c \
 		recorder.c many_args_atob.c
 SRCDIR = srcs
@@ -21,7 +21,8 @@ fclean :
 	make fclean -C ./libft
 	rm -rf $(NAME) $(OBJS)
 
-test : $(NAME) checker_linux
-	bash ./debug.sh
+checker :
+	curl https://projects.intra.42.fr/uploads/document/document/6774/checker_linux -o checker
+	chmod +x checker
 
-.PHONY: all clean fclean re bonus checker
+.PHONY: all clean fclean re bonus
