@@ -6,7 +6,7 @@ LIBFT = ./libft/libft.a
 
 SRC =	main.c base_act.c search_val.c few_args.c \
 		pre_sort.c arg_check.c init_node.c many_args_btoa.c \
-		recorder.c many_args_atob.c
+		recorder.c many_args_atob.c free_and_exit.c many_args_btoa2.c
 SRCDIR = srcs
 SRCS = $(addprefix $(SRCDIR)/, $(SRC))
 OBJS = $(SRCS:%.c=%.o)

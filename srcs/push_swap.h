@@ -6,7 +6,7 @@
 /*   By: tisoya <tisoya@student.42tokyo.jp>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/08 16:04:27 by tisoya            #+#    #+#             */
-/*   Updated: 2022/01/16 22:31:33 by tisoya           ###   ########.fr       */
+/*   Updated: 2022/01/18 03:24:17 by tisoya           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,6 +36,12 @@ typedef struct s_stacks
 	t_sort	*sort;
 }	t_stacks;
 
+//
+void	free_sort(t_sort *sort);
+void	free_node(t_node *node, int count);
+void	free_nodes(t_node *node1, t_node *node2);
+void	free_all(t_node *node1, t_node *node2, t_sort *sort, char *record);
+
 // base_action.c
 void	swap(t_node *node, int ab);
 void	push(t_node *node1, t_node *node2, int ab);
@@ -64,7 +70,7 @@ int		is_digit_str(int as, char *av[]);
 int		atoi_and_errcheck(char *str, t_node *node, size_t i);
 
 // large_arg_act.c
-void	case_gt_six(t_node *node_a, t_node *node_b, t_sort *sort);
+void	case_gt_six(t_node *node_a, t_node *node_b, t_sort *sort, char *record);
 
 void	free_node(t_node *node, int count);
 int		is_unique(t_node *node);
@@ -80,5 +86,9 @@ int		under_pivot(t_node *node, int p, int l, int r);
 void	atob(t_stacks *stacks, int l, int r, int fst);
 
 void	btoa(t_stacks *stacks, int l, int r);
+
+int		btoa_push(t_stacks *stacks);
+int		btoa_rot(t_node *node, int ab);
+void	btoa_pushall(t_stacks *stacks, int l, int r);
 
 #endif

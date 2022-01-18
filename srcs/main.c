@@ -6,13 +6,13 @@
 /*   By: tisoya <tisoya@student.42tokyo.jp>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/08 16:10:53 by tisoya            #+#    #+#             */
-/*   Updated: 2022/01/16 22:27:40 by tisoya           ###   ########.fr       */
+/*   Updated: 2022/01/18 03:21:22 by tisoya           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-void	size_branch(t_node *node_a, t_node *node_b, t_sort *sort)
+void	size_branch(t_node *node_a, t_node *node_b, t_sort *sort, char *record)
 {
 	size_t	size;
 
@@ -26,30 +26,14 @@ void	size_branch(t_node *node_a, t_node *node_b, t_sort *sort)
 	else if (size <= 6)
 		case_ngt_six(node_a, node_b);
 	else
-		case_gt_six(node_a, node_b, sort);
+		case_gt_six(node_a, node_b, sort, record);
 }
 
-void	free_node(t_node *node, int count)
+void	error_exit(t_node *node1, t_node *node2, t_sort *sort, char *record)
 {
-	t_node	*head;
-	t_node	*tmp;
-
-	head = node;
-	node = node->next;
-	while (node != head && count)
-	{
-		tmp = node->next;
-		free(node);
-		node = tmp;
-		count--;
-	}
-	free(head);
-}
-
-void	free_sort(t_sort *sort)
-{
-	free(sort->ptr);
-	free(sort);
+	write(2, "Error\n", 6);
+	free_all(node1, node2, sort, record);
+	exit(EXIT_FAILURE);
 }
 
 int	main(int args, char *argv[])
@@ -72,18 +56,9 @@ int	main(int args, char *argv[])
 	record = record_array(node_a->val * 12);
 	recorder(&record, 0);
 	if (!is_unique(node_a))
-	{
-		write(2, "Error\n", 6);
-		free_sort(sort);
-		free_node(node_a, node_a->val);
-		free_node(node_b, node_b->val);
-		return (0);
-	}
-	size_branch(node_a, node_b, sort);
+		error_exit(node_a, node_b, sort, record);
+	size_branch(node_a, node_b, sort, record);
 	player(record);
-	free_node(node_a, node_a->val);
-	free_node(node_b, node_b->val);
-	free_sort(sort);
-	free(record);
+	free_all(node_a, node_b, sort, record);
 	return (0);
 }

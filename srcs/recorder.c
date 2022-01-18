@@ -6,7 +6,7 @@
 /*   By: tisoya <tisoya@student.42tokyo.jp>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/16 12:07:46 by tisoya            #+#    #+#             */
-/*   Updated: 2022/01/16 23:24:09 by tisoya           ###   ########.fr       */
+/*   Updated: 2022/01/18 15:56:57 by tisoya           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,6 +39,18 @@ void	recorder(char **record, int act)
 		reco[index++] = act;
 }
 
+size_t	offset_papb(char *record, size_t i, size_t j)
+{
+	if ((record[i] == 4 && record[j] == 5)
+		|| (record[i] == 5 && record[j] == 4))
+	{
+		record[i] = 1;
+		record[j] = 1;
+		return (0);
+	}
+	return (i);
+}
+
 void	optimizer(char *record)
 {
 	size_t	i;
@@ -62,13 +74,15 @@ void	optimizer(char *record)
 		j = i + 1;
 		while (record[j] == 1)
 			j++;
-		if ((record[i] == 4 && record[j] == 5)
-			|| (record[i] == 5 && record[j] == 4))
-		{
-			record[i] = 1;
-			record[j] = 1;
-			i = -1;
-		}
+		if (record[i] == 4 || record[i] == 5)
+			i = offset_papb(record, i, j);
+		// if ((record[i] == 4 && record[j] == 5)
+		// 	|| (record[i] == 5 && record[j] == 4))
+		// {
+		// 	record[i] = 1;
+		// 	record[j] = 1;
+		// 	i = -1;
+		// }
 		else if ((record[i] == 8 && record[j] == 9)
 			|| (record[i] == 9 && record[j] == 8))
 		{
