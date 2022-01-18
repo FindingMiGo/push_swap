@@ -6,7 +6,7 @@
 /*   By: tisoya <tisoya@student.42tokyo.jp>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/08 16:04:27 by tisoya            #+#    #+#             */
-/*   Updated: 2022/01/18 03:24:17 by tisoya           ###   ########.fr       */
+/*   Updated: 2022/01/18 16:44:22 by tisoya           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -90,5 +90,7 @@ void	btoa(t_stacks *stacks, int l, int r);
 int		btoa_push(t_stacks *stacks);
 int		btoa_rot(t_node *node, int ab);
 void	btoa_pushall(t_stacks *stacks, int l, int r);
+
+void	optimizer(char *record);
 
 #endif
