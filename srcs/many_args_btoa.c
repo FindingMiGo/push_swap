@@ -6,7 +6,7 @@
 /*   By: tisoya <tisoya@student.42tokyo.jp>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/20 17:21:53 by tisoya            #+#    #+#             */
-/*   Updated: 2022/01/20 17:12:42 by tisoya           ###   ########.fr       */
+/*   Updated: 2022/01/20 17:24:22 by tisoya           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -113,7 +113,7 @@ void	case_gt_six(t_node *node_a, t_node *node_b, t_sort *sort, char **record)
 	stacks = (t_stacks *)malloc(sizeof(t_stacks));
 	if (!stacks)
 	{
-		free_all(node_a, node_b, sort, *record);
+		free_all(node_a, node_b, sort, record);
 		exit(EXIT_FAILURE);
 	}
 	stacks->a = node_a;

@@ -6,7 +6,7 @@
 /*   By: tisoya <tisoya@student.42tokyo.jp>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/08 16:10:53 by tisoya            #+#    #+#             */
-/*   Updated: 2022/01/20 17:13:19 by tisoya           ###   ########.fr       */
+/*   Updated: 2022/01/20 17:24:57 by tisoya           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,7 +32,7 @@ void	size_branch(t_node *node_a, t_node *node_b, t_sort *sort, char **record)
 void	error_exit(t_node *node1, t_node *node2, t_sort *sort, char *record)
 {
 	write(2, "Error\n", 6);
-	free_all(node1, node2, sort, record);
+	free_all(node1, node2, sort, &record);
 	exit(EXIT_FAILURE);
 }
 
