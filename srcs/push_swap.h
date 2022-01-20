@@ -6,7 +6,7 @@
 /*   By: tisoya <tisoya@student.42tokyo.jp>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/08 16:04:27 by tisoya            #+#    #+#             */
-/*   Updated: 2022/01/20 22:25:29 by tisoya           ###   ########.fr       */
+/*   Updated: 2022/01/21 02:33:05 by tisoya           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -77,8 +77,8 @@ void	free_node(t_node *node, int count);
 int		is_unique(t_node *node);
 
 // recorder.c
-char	*record_array(size_t size);
-void	recorder(char *record, int act);
+char	**record_array(size_t size);
+void	recorder(char **record, int act);
 void	player(char *record);
 void	optimizer(char *record);
 

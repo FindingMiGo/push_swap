@@ -6,37 +6,55 @@
 /*   By: tisoya <tisoya@student.42tokyo.jp>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/16 12:07:46 by tisoya            #+#    #+#             */
-/*   Updated: 2022/01/20 22:20:40 by tisoya           ###   ########.fr       */
+/*   Updated: 2022/01/21 02:44:48 by tisoya           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-char	*record_array(size_t size)
+char	**record_array(size_t size)
 {
 	char		*record;
+	char		**ret;
 
 	record = (char *)malloc(sizeof(char) * size + 1);
+	ret = (char **)malloc(sizeof(char *));
+	if (!record || !ret)
+		return (NULL);
 	ft_memset(record, 1, size);
 	record[size] = '\0';
-	return (record);
+	*ret = record;
+	return (ret);
 }
 
-void	recorder(char *record, int act)
+void	recorder(char **record, int act)
 {
-	static char		*reco;
+	static char		**reco;
+	char			*tmp;
 	static size_t	size;
 	static size_t	index;
 
 	if (record && act == 0)
 	{
 		reco = record;
-		size = ft_strlen(record);
+		size = ft_strlen(*record);
 		index = 0;
 		return ;
 	}
 	else if (record == NULL)
-		reco[index++] = act;
+	{
+		if (size == index)
+		{
+			tmp = (char *)malloc(sizeof(char) * (size * 2) + 1);
+			ft_memset(tmp, 1, size * 2);
+			tmp[size * 2] = '\0';
+			ft_memcpy(tmp, *reco, size);
+			free(*reco);
+			*reco = tmp;
+			size = size * 2;
+		}
+		(*reco)[index++] = act;
+	}
 }
 
 void	print_command(char c)
