@@ -6,7 +6,7 @@
 /*   By: tisoya <tisoya@student.42tokyo.jp>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/16 12:07:46 by tisoya            #+#    #+#             */
-/*   Updated: 2022/01/21 02:44:48 by tisoya           ###   ########.fr       */
+/*   Updated: 2022/01/21 05:37:42 by tisoya           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,23 @@ char	**record_array(size_t size)
 	ft_memset(record, 1, size);
 	record[size] = '\0';
 	*ret = record;
+	vals_storage(NULL, NULL, NULL, ret);
+	recorder(ret, 0);
 	return (ret);
+}
+
+static char	*sham_realloc(char **reco, size_t size)
+{
+	char	*tmp;
+
+	tmp = (char *)malloc(sizeof(char) * (size * 2) + 1);
+	if (!tmp)
+		shutdown();
+	ft_memset(tmp, 1, size * 2);
+	tmp[size * 2] = '\0';
+	ft_memcpy(tmp, *reco, size);
+	free(*reco);
+	return (tmp);
 }
 
 void	recorder(char **record, int act)
@@ -39,18 +55,12 @@ void	recorder(char **record, int act)
 		reco = record;
 		size = ft_strlen(*record);
 		index = 0;
-		return ;
 	}
 	else if (record == NULL)
 	{
 		if (size == index)
 		{
-			tmp = (char *)malloc(sizeof(char) * (size * 2) + 1);
-			ft_memset(tmp, 1, size * 2);
-			tmp[size * 2] = '\0';
-			ft_memcpy(tmp, *reco, size);
-			free(*reco);
-			*reco = tmp;
+			*reco = sham_realloc(reco, size);
 			size = size * 2;
 		}
 		(*reco)[index++] = act;
@@ -94,4 +104,5 @@ void	player(char *record)
 		print_command(record[i]);
 		i++;
 	}
+	vals_storage(NULL, NULL, NULL, NULL);
 }

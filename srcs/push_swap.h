@@ -6,7 +6,7 @@
 /*   By: tisoya <tisoya@student.42tokyo.jp>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/08 16:04:27 by tisoya            #+#    #+#             */
-/*   Updated: 2022/01/21 02:33:05 by tisoya           ###   ########.fr       */
+/*   Updated: 2022/01/21 05:20:14 by tisoya           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,7 @@
 # define PUSH_SWAP_H
 
 # include "../libft/libft.h"
+# include<stdio.h>
 
 typedef struct s_node
 {
@@ -94,4 +95,7 @@ void	btoa_pushall(t_stacks *stacks, int l, int r);
 
 void	optimizer(char *record);
 
+void	vals_storage(t_node *node, t_stacks *stacks,
+			t_sort *sort, char **record);
+void	shutdown(void);
 #endif

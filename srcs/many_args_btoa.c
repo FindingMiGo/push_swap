@@ -6,7 +6,7 @@
 /*   By: tisoya <tisoya@student.42tokyo.jp>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/20 17:21:53 by tisoya            #+#    #+#             */
-/*   Updated: 2022/01/20 22:25:27 by tisoya           ###   ########.fr       */
+/*   Updated: 2022/01/21 05:20:23 by tisoya           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -116,9 +116,9 @@ void	case_gt_six(t_node *node_a, t_node *node_b, t_sort *sort, char *record)
 		free_all(node_a, node_b, sort, record);
 		exit(EXIT_FAILURE);
 	}
+	vals_storage(NULL, stacks, NULL, NULL);
 	stacks->a = node_a;
 	stacks->b = node_b;
 	stacks->sort = sort;
 	atob(stacks, 0, sort->size - 1, 1);
-	free(stacks);
 }

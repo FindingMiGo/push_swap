@@ -6,7 +6,7 @@
 /*   By: tisoya <tisoya@student.42tokyo.jp>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/16 12:19:21 by tisoya            #+#    #+#             */
-/*   Updated: 2022/01/20 17:19:37 by tisoya           ###   ########.fr       */
+/*   Updated: 2022/01/21 04:40:17 by tisoya           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,6 +35,7 @@ t_node	*init_node(int args, char *argv[])
 	tmp->next = sentinel;
 	sentinel->prev = tmp;
 	sentinel->val = i;
+	vals_storage(sentinel, NULL, NULL, NULL);
 	return (sentinel);
 }
 

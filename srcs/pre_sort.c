@@ -6,7 +6,7 @@
 /*   By: tisoya <tisoya@student.42tokyo.jp>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/16 12:07:46 by tisoya            #+#    #+#             */
-/*   Updated: 2022/01/16 22:09:10 by tisoya           ###   ########.fr       */
+/*   Updated: 2022/01/21 05:35:45 by tisoya           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,7 +54,7 @@ static int	*sorted_array(t_node *node)
 
 	a = (int *)malloc(sizeof(int) * node->val);
 	if (!a)
-		return (NULL);
+		shutdown();
 	node = node->next;
 	while (node->index != 0)
 	{
@@ -70,7 +70,10 @@ t_sort	*pre_sort(t_node *node)
 	t_sort	*sort;
 
 	sort = (t_sort *)malloc(sizeof(t_sort));
+	if (!sort || !node)
+		shutdown();
 	sort->ptr = sorted_array(node);
 	sort->size = node->val;
+	vals_storage(NULL, NULL, sort, NULL);
 	return (sort);
 }

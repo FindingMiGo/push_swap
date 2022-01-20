@@ -6,7 +6,7 @@
 /*   By: tisoya <tisoya@student.42tokyo.jp>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/08 16:10:53 by tisoya            #+#    #+#             */
-/*   Updated: 2022/01/21 02:46:59 by tisoya           ###   ########.fr       */
+/*   Updated: 2022/01/21 05:37:47 by tisoya           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,11 +29,10 @@ void	size_branch(t_node *node_a, t_node *node_b, t_sort *sort, char *record)
 		case_gt_six(node_a, node_b, sort, record);
 }
 
-void	error_exit(t_node *node1, t_node *node2, t_sort *sort, char *record)
+static void	error_exit(void)
 {
 	write(2, "Error\n", 6);
-	free_all(node1, node2, sort, record);
-	exit(EXIT_FAILURE);
+	shutdown();
 }
 
 int	main(int args, char *argv[])
@@ -44,7 +43,7 @@ int	main(int args, char *argv[])
 	char	**record;
 
 	if (args < 2)
-		exit(1);
+		return (0);
 	if (!is_digit_str(args - 1, argv + 1))
 	{
 		write(2, "Error\n", 6);
@@ -52,19 +51,15 @@ int	main(int args, char *argv[])
 	}
 	node_a = init_node(args, argv);
 	node_b = init_node(0, NULL);
+	if (!node_a || !node_b)
+		shutdown();
 	sort = pre_sort(node_a);
-	record = record_array(node_a->val * 10);
-	recorder(record, 0);
+	record = record_array(node_a->val * 1);
+	if (!sort || !record || is_sorted(node_a))
+		shutdown();
 	if (!is_unique(node_a))
-		error_exit(node_a, node_b, sort, *record);
-	if (is_sorted(node_a))
-	{
-		free_all(node_a, node_b, sort, *record);
-		return 0;
-	}
+		error_exit();
 	size_branch(node_a, node_b, sort, *record);
 	player(*record);
-	free_all(node_a, node_b, sort, *record);
-	free(record);
 	return (0);
 }
