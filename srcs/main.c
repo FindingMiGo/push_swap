@@ -6,7 +6,7 @@
 /*   By: tisoya <tisoya@student.42tokyo.jp>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/08 16:10:53 by tisoya            #+#    #+#             */
-/*   Updated: 2022/01/20 22:19:09 by tisoya           ###   ########.fr       */
+/*   Updated: 2022/01/20 23:51:37 by tisoya           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,6 +57,11 @@ int	main(int args, char *argv[])
 	recorder(record, 0);
 	if (!is_unique(node_a))
 		error_exit(node_a, node_b, sort, record);
+	if (is_sorted(node_a))
+	{
+		free_all(node_a, node_b, sort, record);
+		return 0;
+	}
 	size_branch(node_a, node_b, sort, record);
 	player(record);
 	free_all(node_a, node_b, sort, record);
