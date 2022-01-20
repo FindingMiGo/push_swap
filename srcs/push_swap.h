@@ -6,7 +6,7 @@
 /*   By: tisoya <tisoya@student.42tokyo.jp>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/08 16:04:27 by tisoya            #+#    #+#             */
-/*   Updated: 2022/01/20 17:23:27 by tisoya           ###   ########.fr       */
+/*   Updated: 2022/01/20 22:25:29 by tisoya           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,7 +40,7 @@ typedef struct s_stacks
 void	free_sort(t_sort *sort);
 void	free_node(t_node *node, int count);
 void	free_nodes(t_node *node1, t_node *node2);
-void	free_all(t_node *node1, t_node *node2, t_sort *sort, char **record);
+void	free_all(t_node *node1, t_node *node2, t_sort *sort, char *record);
 
 // base_action.c
 void	swap(t_node *node, int ab);
@@ -71,14 +71,14 @@ int		atoi_and_errcheck(char *str, t_node *node, size_t i);
 
 // large_arg_act.c
 void	case_gt_six(t_node *node_a, t_node *node_b,
-			t_sort *sort, char **record);
+			t_sort *sort, char *record);
 
 void	free_node(t_node *node, int count);
 int		is_unique(t_node *node);
 
 // recorder.c
 char	*record_array(size_t size);
-void	recorder(char **record, int act);
+void	recorder(char *record, int act);
 void	player(char *record);
 void	optimizer(char *record);
 

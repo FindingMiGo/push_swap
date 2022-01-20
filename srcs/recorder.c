@@ -6,7 +6,7 @@
 /*   By: tisoya <tisoya@student.42tokyo.jp>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/16 12:07:46 by tisoya            #+#    #+#             */
-/*   Updated: 2022/01/18 16:43:53 by tisoya           ###   ########.fr       */
+/*   Updated: 2022/01/20 22:20:40 by tisoya           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,7 @@ char	*record_array(size_t size)
 	return (record);
 }
 
-void	recorder(char **record, int act)
+void	recorder(char *record, int act)
 {
 	static char		*reco;
 	static size_t	size;
@@ -30,8 +30,8 @@ void	recorder(char **record, int act)
 
 	if (record && act == 0)
 	{
-		reco = *record;
-		size = ft_strlen(*record);
+		reco = record;
+		size = ft_strlen(record);
 		index = 0;
 		return ;
 	}
