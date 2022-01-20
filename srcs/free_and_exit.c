@@ -6,7 +6,7 @@
 /*   By: tisoya <tisoya@student.42tokyo.jp>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/08 16:10:53 by tisoya            #+#    #+#             */
-/*   Updated: 2022/01/18 03:22:03 by tisoya           ###   ########.fr       */
+/*   Updated: 2022/01/20 17:13:29 by tisoya           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,9 +41,9 @@ void	free_sort(t_sort *sort)
 	free(sort);
 }
 
-void	free_all(t_node *node1, t_node *node2, t_sort *sort, char *record)
+void	free_all(t_node *node1, t_node *node2, t_sort *sort, char **record)
 {
-	free(record);
+	free(*record);
 	free_sort(sort);
 	free_nodes(node1, node2);
 }
