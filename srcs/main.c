@@ -6,13 +6,13 @@
 /*   By: tisoya <tisoya@student.42tokyo.jp>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/08 16:10:53 by tisoya            #+#    #+#             */
-/*   Updated: 2022/01/21 05:37:47 by tisoya           ###   ########.fr       */
+/*   Updated: 2022/01/21 05:40:25 by tisoya           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-void	size_branch(t_node *node_a, t_node *node_b, t_sort *sort, char *record)
+void	size_branch(t_node *node_a, t_node *node_b, t_sort *sort)
 {
 	size_t	size;
 
@@ -26,7 +26,7 @@ void	size_branch(t_node *node_a, t_node *node_b, t_sort *sort, char *record)
 	else if (size <= 6)
 		case_ngt_six(node_a, node_b);
 	else
-		case_gt_six(node_a, node_b, sort, record);
+		case_gt_six(node_a, node_b, sort);
 }
 
 static void	error_exit(void)
@@ -59,7 +59,7 @@ int	main(int args, char *argv[])
 		shutdown();
 	if (!is_unique(node_a))
 		error_exit();
-	size_branch(node_a, node_b, sort, *record);
+	size_branch(node_a, node_b, sort);
 	player(*record);
 	return (0);
 }

@@ -6,11 +6,24 @@
 /*   By: tisoya <tisoya@student.42tokyo.jp>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/16 12:19:21 by tisoya            #+#    #+#             */
-/*   Updated: 2022/01/21 04:40:17 by tisoya           ###   ########.fr       */
+/*   Updated: 2022/01/21 15:29:37 by tisoya           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
+
+t_node	*malloc_node(t_node *sentinel, size_t i)
+{
+	t_node	*node;
+
+	node = (t_node *)malloc(sizeof(t_node));
+	if (!node)
+	{
+		free_node(sentinel, i);
+		shutdown();
+	}
+	return (node);
+}
 
 t_node	*init_node(int args, char *argv[])
 {
@@ -19,12 +32,14 @@ t_node	*init_node(int args, char *argv[])
 	size_t	i;
 
 	sentinel = (t_node *)malloc(sizeof(t_node));
+	if (!sentinel)
+		shutdown();
 	sentinel->index = 0;
 	tmp = sentinel;
 	i = 0;
 	while (i + 1 < args)
 	{
-		tmp->next = (t_node *)malloc(sizeof(t_node));
+		tmp->next = malloc_node(sentinel, i);
 		tmp->next->prev = tmp;
 		tmp = tmp->next;
 		tmp->index = i + 1;
