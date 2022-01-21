@@ -6,20 +6,20 @@
 /*   By: tisoya <tisoya@student.42tokyo.jp>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/16 12:14:42 by tisoya            #+#    #+#             */
-/*   Updated: 2022/01/16 23:03:16 by tisoya           ###   ########.fr       */
+/*   Updated: 2022/01/21 16:56:07 by tisoya           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-int	is_sorted(t_node *node)
+int	is_sorted(t_stack *stack)
 {
-	node = node->next;
-	while (node->next->index != 0)
+	stack = stack->next;
+	while (stack->next->index != 0)
 	{
-		if (node->val > node->next->val)
+		if (stack->val > stack->next->val)
 			return (0);
-		node = node->next;
+		stack = stack->next;
 	}
 	return (1);
 }
@@ -49,26 +49,26 @@ int	is_digit_str(int as, char *av[])
 	return (1);
 }
 
-int	is_unique(t_node *node)
+int	is_unique(t_stack *stack)
 {
-	t_node	*tmp;
+	t_stack	*tmp;
 
-	node = node->next;
-	while (node->next->index != 0)
+	stack = stack->next;
+	while (stack->next->index != 0)
 	{
-		tmp = node->next;
+		tmp = stack->next;
 		while (tmp->index != 0)
 		{
-			if (node->val == tmp->val)
+			if (stack->val == tmp->val)
 				return (0);
 			tmp = tmp->next;
 		}
-		node = node->next;
+		stack = stack->next;
 	}
 	return (1);
 }
 
-int	atoi_and_errcheck(char *str, t_node *node, size_t count)
+int	atoi_and_errcheck(char *str, t_stack *stack, size_t count)
 {
 	int			sign;
 	long long	ans;
@@ -88,7 +88,7 @@ int	atoi_and_errcheck(char *str, t_node *node, size_t count)
 			|| (sign == -1 && (-1 * ans) < (INT_MIN + (str[i] - '0')) / 10))
 		{
 			write(2, "Error\n", 6);
-			free_node(node, count);
+			free_stack(stack, count);
 			exit(EXIT_FAILURE);
 		}
 		ans = ans * 10 + (str[i++] - '0');

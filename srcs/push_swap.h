@@ -6,7 +6,7 @@
 /*   By: tisoya <tisoya@student.42tokyo.jp>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/08 16:04:27 by tisoya            #+#    #+#             */
-/*   Updated: 2022/01/21 05:40:59 by tisoya           ###   ########.fr       */
+/*   Updated: 2022/01/21 16:56:07 by tisoya           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,65 +16,65 @@
 # include "../libft/libft.h"
 # include<stdio.h>
 
-typedef struct s_node
+typedef struct s_stack
 {
 	int				val;
 	size_t			index;
-	struct s_node	*prev;
-	struct s_node	*next;
-}	t_node;
+	struct s_stack	*prev;
+	struct s_stack	*next;
+}	t_stack;
 
 typedef struct s_sort
 {
-	int		*ptr;
+	int		*array;
 	size_t	size;
 }	t_sort;
 
 typedef struct s_stacks
 {
-	t_node	*a;
-	t_node	*b;
+	t_stack	*a;
+	t_stack	*b;
 	t_sort	*sort;
 }	t_stacks;
 
 //
 void	free_sort(t_sort *sort);
-void	free_node(t_node *node, int count);
-void	free_nodes(t_node *node1, t_node *node2);
-void	free_all(t_node *node1, t_node *node2, t_sort *sort, char *record);
+void	free_stack(t_stack *stack, int count);
+void	free_stackab(t_stack *stack1, t_stack *stack2);
+void	free_all(t_stack *stack1, t_stack *stack2, t_sort *sort, char *record);
 
 // base_action.c
-void	swap(t_node *node, int ab);
-void	push(t_node *node1, t_node *node2, int ab);
-void	r_rot(t_node *node, int ab);
-void	rot(t_node *node, int ab);
+void	swap(t_stack *stack, int ab);
+void	push(t_stack *stack1, t_stack *stack2, int ab);
+void	r_rot(t_stack *stack, int ab);
+void	rot(t_stack *stack, int ab);
 
 // composite_action.c
-void	set_min(t_node *node, int ab);
-void	set_max(t_node *node, int ab);
+void	set_min(t_stack *stack, int ab);
+void	set_max(t_stack *stack, int ab);
 
 // small_arg_action.c
-void	case_two(t_node *node);
-void	case_three(t_node *node);
-void	case_ngt_six(t_node *node1, t_node *node2);
+void	case_two(t_stack *stack);
+void	case_three(t_stack *stack);
+void	case_ngt_six(t_stack *stack1, t_stack *stack2);
 
 // init_node.c
-t_node	*init_node(int args, char *argv[]);
-void	re_index(t_node *node);
+t_stack	*init_stack(int args, char *argv[]);
+void	re_index(t_stack *stack);
 
 // pre_sort.c
-t_sort	*pre_sort(t_node *node);
+t_sort	*pre_sort(t_stack *stack);
 
 // arg_check.c
-int		is_sorted(t_node *node);
+int		is_sorted(t_stack *stack);
 int		is_digit_str(int as, char *av[]);
-int		atoi_and_errcheck(char *str, t_node *node, size_t i);
+int		atoi_and_errcheck(char *str, t_stack *stack, size_t i);
 
 // large_arg_act.c
-void	case_gt_six(t_node *node_a, t_node *node_b, t_sort *sort);
+void	case_gt_six(t_stack *stack_a, t_stack *stack_b, t_sort *sort);
 
-void	free_node(t_node *node, int count);
-int		is_unique(t_node *node);
+void	free_stack(t_stack *stack, int count);
+int		is_unique(t_stack *stack);
 
 // recorder.c
 char	**record_array(size_t size);
@@ -83,18 +83,18 @@ void	player(char *record);
 void	optimizer(char *record);
 
 // many_args_atob.c
-int		under_pivot(t_node *node, int p, int l, int r);
+int		under_pivot(t_stack *stack, int p, int l, int r);
 void	atob(t_stacks *stacks, int l, int r, int fst);
 
 void	btoa(t_stacks *stacks, int l, int r);
 
 int		btoa_push(t_stacks *stacks);
-int		btoa_rot(t_node *node, int ab);
+int		btoa_rot(t_stack *stack, int ab);
 void	btoa_pushall(t_stacks *stacks, int l, int r);
 
 void	optimizer(char *record);
 
-void	vals_storage(t_node *node, t_stacks *stacks,
+void	vals_storage(t_stack *stack, t_stacks *stacks,
 			t_sort *sort, char **record);
 void	shutdown(void);
 #endif

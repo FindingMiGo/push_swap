@@ -6,32 +6,32 @@
 /*   By: tisoya <tisoya@student.42tokyo.jp>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/16 12:19:21 by tisoya            #+#    #+#             */
-/*   Updated: 2022/01/21 15:36:44 by tisoya           ###   ########.fr       */
+/*   Updated: 2022/01/21 16:56:07 by tisoya           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-static t_node	*alloc_node(t_node *sentinel, size_t i)
+static t_stack	*alloc_stack(t_stack *sentinel, size_t i)
 {
-	t_node	*node;
+	t_stack	*stack;
 
-	node = (t_node *)malloc(sizeof(t_node));
-	if (!node)
+	stack = (t_stack *)malloc(sizeof(t_stack));
+	if (!stack)
 	{
-		free_node(sentinel, i);
+		free_stack(sentinel, i);
 		shutdown();
 	}
-	return (node);
+	return (stack);
 }
 
-t_node	*init_node(int args, char *argv[])
+t_stack	*init_stack(int args, char *argv[])
 {
-	t_node	*sentinel;
-	t_node	*tmp;
+	t_stack	*sentinel;
+	t_stack	*tmp;
 	size_t	i;
 
-	sentinel = (t_node *)malloc(sizeof(t_node));
+	sentinel = (t_stack *)malloc(sizeof(t_stack));
 	if (!sentinel)
 		shutdown();
 	sentinel->index = 0;
@@ -39,7 +39,7 @@ t_node	*init_node(int args, char *argv[])
 	i = 0;
 	while (i + 1 < args)
 	{
-		tmp->next = alloc_node(sentinel, i);
+		tmp->next = alloc_stack(sentinel, i);
 		tmp->next->prev = tmp;
 		tmp = tmp->next;
 		tmp->index = i + 1;
@@ -54,18 +54,18 @@ t_node	*init_node(int args, char *argv[])
 	return (sentinel);
 }
 
-void	re_index(t_node *node)
+void	re_index(t_stack *stack)
 {
-	t_node	*tmp;
+	t_stack	*tmp;
 	int		i;
 
-	tmp = node->next;
+	tmp = stack->next;
 	i = 0;
-	while (tmp != node)
+	while (tmp != stack)
 	{
 		tmp->index = i + 1;
 		tmp = tmp->next;
 		i++;
 	}
-	node->val = i;
+	stack->val = i;
 }

@@ -6,21 +6,21 @@
 /*   By: tisoya <tisoya@student.42tokyo.jp>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/16 11:59:46 by tisoya            #+#    #+#             */
-/*   Updated: 2022/01/16 22:12:23 by tisoya           ###   ########.fr       */
+/*   Updated: 2022/01/21 16:14:03 by tisoya           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-void	swap(t_node *node, int ab)
+void	swap(t_stack *stack, int ab)
 {
-	t_node	*head;
-	t_node	*tmp1;
-	t_node	*tmp2;
+	t_stack	*head;
+	t_stack	*tmp1;
+	t_stack	*tmp2;
 
-	if (node->val < 2)
+	if (stack->val < 2)
 		return ;
-	head = node;
+	head = stack;
 	tmp1 = head->next;
 	tmp2 = head->next->next;
 	tmp1->prev->next = tmp2;
@@ -35,21 +35,21 @@ void	swap(t_node *node, int ab)
 		recorder(NULL, 3);
 }
 
-void	push(t_node *node1, t_node *node2, int ab)
+void	push(t_stack *stack1, t_stack *stack2, int ab)
 {
-	t_node	*head1;
-	t_node	*head2;
-	t_node	*tmp1;
-	t_node	*tmp2;
+	t_stack	*head1;
+	t_stack	*head2;
+	t_stack	*tmp1;
+	t_stack	*tmp2;
 
-	if (node1->val < 1)
+	if (stack1->val < 1)
 		return ;
-	head1 = node1;
-	tmp1 = node1->next;
+	head1 = stack1;
+	tmp1 = stack1->next;
 	head1->next = tmp1->next;
 	tmp1->next->prev = head1;
-	head2 = node2;
-	tmp2 = node2->next;
+	head2 = stack2;
+	tmp2 = stack2->next;
 	tmp1->prev = head2;
 	tmp1->next = tmp2;
 	head2->next = tmp1;
@@ -62,15 +62,15 @@ void	push(t_node *node1, t_node *node2, int ab)
 		recorder(NULL, 5);
 }
 
-void	r_rot(t_node *node, int ab)
+void	r_rot(t_stack *stack, int ab)
 {
-	t_node	*head;
-	t_node	*tmp1;
-	t_node	*tmp2;
+	t_stack	*head;
+	t_stack	*tmp1;
+	t_stack	*tmp2;
 
-	if (node->val < 2)
+	if (stack->val < 2)
 		return ;
-	head = node;
+	head = stack;
 	tmp1 = head->next;
 	tmp2 = head->prev;
 	head->prev = tmp2->prev;
@@ -85,15 +85,15 @@ void	r_rot(t_node *node, int ab)
 		recorder(NULL, 7);
 }
 
-void	rot(t_node *node, int ab)
+void	rot(t_stack *stack, int ab)
 {
-	t_node	*head;
-	t_node	*tmp1;
-	t_node	*tmp2;
+	t_stack	*head;
+	t_stack	*tmp1;
+	t_stack	*tmp2;
 
-	if (node->val < 2)
+	if (stack->val < 2)
 		return ;
-	head = node;
+	head = stack;
 	tmp1 = head->next;
 	tmp2 = head->prev;
 	head->next = tmp1->next;

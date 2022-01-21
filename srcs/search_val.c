@@ -6,98 +6,98 @@
 /*   By: tisoya <tisoya@student.42tokyo.jp>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/16 12:23:40 by tisoya            #+#    #+#             */
-/*   Updated: 2022/01/16 23:16:13 by tisoya           ###   ########.fr       */
+/*   Updated: 2022/01/21 16:58:31 by tisoya           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-static t_node	*min_addr(t_node *node)
+static t_stack	*min_addr(t_stack *stack)
 {
-	t_node	*ret;
+	t_stack	*ret;
 	int		min;
 
-	node = node->next;
-	min = node->val;
-	ret = node;
-	while (node->index != 0)
+	stack = stack->next;
+	min = stack->val;
+	ret = stack;
+	while (stack->index != 0)
 	{
-		if (node->val < min)
+		if (stack->val < min)
 		{
-			min = node->val;
-			ret = node;
+			min = stack->val;
+			ret = stack;
 		}
-		node = node->next;
+		stack = stack->next;
 	}
 	return (ret);
 }
 
-static t_node	*max_addr(t_node *node)
+static t_stack	*max_addr(t_stack *stack)
 {
-	t_node	*ret;
+	t_stack	*ret;
 	int		max;
 
-	node = node->next;
-	max = node->val;
-	ret = node;
-	while (node->index != 0)
+	stack = stack->next;
+	max = stack->val;
+	ret = stack;
+	while (stack->index != 0)
 	{
-		if (node->val > max)
+		if (stack->val > max)
 		{
-			max = node->val;
-			ret = node;
+			max = stack->val;
+			ret = stack;
 		}
-		node = node->next;
+		stack = stack->next;
 	}
 	return (ret);
 }
 
-void	set_min(t_node *node, int ab)
+void	set_min(t_stack *stack, int ab)
 {
-	t_node	*min;
+	t_stack	*min;
 	size_t	size;
 
-	re_index(node);
-	min = min_addr(node);
-	size = node->val;
+	re_index(stack);
+	min = min_addr(stack);
+	size = stack->val;
 	if (min->index - 1 <= (size - min->index + 1))
 	{
-		while (node->next != min)
+		while (stack->next != min)
 		{
 			if (min->index == 2)
-				swap(node, ab);
+				swap(stack, ab);
 			else
-				rot(node, ab);
+				rot(stack, ab);
 		}
 	}
 	else
 	{
-		while (node->next != min)
-			r_rot(node, ab);
+		while (stack->next != min)
+			r_rot(stack, ab);
 	}
 }
 
-void	set_max(t_node *node, int ab)
+void	set_max(t_stack *stack, int ab)
 {
-	t_node	*max;
+	t_stack	*max;
 	size_t	size;
 
-	re_index(node);
-	max = max_addr(node);
-	size = node->val;
+	re_index(stack);
+	max = max_addr(stack);
+	size = stack->val;
 	if (max->index - 1 <= (size - max->index + 1))
 	{
-		while (node->next != max)
+		while (stack->next != max)
 		{
 			if (max->index == 2)
-				swap(node, ab);
+				swap(stack, ab);
 			else
-				rot(node, ab);
+				rot(stack, ab);
 		}
 	}
 	else
 	{
-		while (node->next != max)
-			r_rot(node, ab);
+		while (stack->next != max)
+			r_rot(stack, ab);
 	}
 }

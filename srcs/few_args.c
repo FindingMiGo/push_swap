@@ -1,69 +1,69 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   few_args_act.c                                     :+:      :+:    :+:   */
+/*   few_args.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: tisoya <tisoya@student.42tokyo.jp>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/08 16:10:53 by tisoya            #+#    #+#             */
-/*   Updated: 2022/01/16 22:08:56 by tisoya           ###   ########.fr       */
+/*   Updated: 2022/01/21 16:14:42 by tisoya           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-void	case_two(t_node *node)
+void	case_two(t_stack *stack)
 {
 	int	a;
 	int	b;
 
-	a = node->next->val;
-	b = node->next->next->val;
+	a = stack->next->val;
+	b = stack->next->next->val;
 	if (a > b)
-		swap(node, 1);
+		swap(stack, 1);
 }
 
-void	case_three(t_node *node)
+void	case_three(t_stack *stack)
 {
 	int	a;
 	int	b;
 	int	c;
 
-	a = node->next->val;
-	b = node->next->next->val;
-	c = node->next->next->next->val;
+	a = stack->next->val;
+	b = stack->next->next->val;
+	c = stack->next->next->next->val;
 	if (b < a && a < c)
-		swap(node, 1);
+		swap(stack, 1);
 	else if (a > b && b > c)
 	{
-		swap(node, 1);
-		r_rot(node, 1);
+		swap(stack, 1);
+		r_rot(stack, 1);
 	}
 	else if (a > c && c > b)
-		rot(node, 1);
+		rot(stack, 1);
 	else if (a < c && c < b)
 	{
-		swap(node, 1);
-		rot(node, 1);
+		swap(stack, 1);
+		rot(stack, 1);
 	}
 	else if (c < a && a < b)
-		r_rot(node, 1);
+		r_rot(stack, 1);
 }
 
-void	case_ngt_six(t_node *node1, t_node *node2)
+void	case_ngt_six(t_stack *stack1, t_stack *stack2)
 {
 	size_t	size;
 	size_t	count;
 
-	size = node1->val;
+	size = stack1->val;
 	count = 0;
 	while (size - count > 3)
 	{
-		set_min(node1, 1);
-		push(node1, node2, 1);
+		set_min(stack1, 1);
+		push(stack1, stack2, 1);
 		count++;
 	}
-	case_three(node1);
-	while (node2->val > 0)
-		push(node2, node1, 2);
+	case_three(stack1);
+	while (stack2->val > 0)
+		push(stack2, stack1, 2);
 }

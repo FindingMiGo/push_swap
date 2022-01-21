@@ -6,7 +6,7 @@
 /*   By: tisoya <tisoya@student.42tokyo.jp>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/16 12:07:46 by tisoya            #+#    #+#             */
-/*   Updated: 2022/01/21 05:35:45 by tisoya           ###   ########.fr       */
+/*   Updated: 2022/01/21 16:57:56 by tisoya           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,32 +48,32 @@ static void	quick_sort(int *sort, size_t left, size_t right)
 	quick_sort(sort, part, right);
 }
 
-static int	*sorted_array(t_node *node)
+static int	*sorted_array(t_stack *stack)
 {
 	int	*a;
 
-	a = (int *)malloc(sizeof(int) * node->val);
+	a = (int *)malloc(sizeof(int) * stack->val);
 	if (!a)
 		shutdown();
-	node = node->next;
-	while (node->index != 0)
+	stack = stack->next;
+	while (stack->index != 0)
 	{
-		a[node->index - 1] = node->val;
-		node = node->next;
+		a[stack->index - 1] = stack->val;
+		stack = stack->next;
 	}
-	quick_sort(a, 0, node->val - 1);
+	quick_sort(a, 0, stack->val - 1);
 	return (a);
 }
 
-t_sort	*pre_sort(t_node *node)
+t_sort	*pre_sort(t_stack *stack)
 {
 	t_sort	*sort;
 
 	sort = (t_sort *)malloc(sizeof(t_sort));
-	if (!sort || !node)
+	if (!sort || !stack)
 		shutdown();
-	sort->ptr = sorted_array(node);
-	sort->size = node->val;
+	sort->array = sorted_array(stack);
+	sort->size = stack->val;
 	vals_storage(NULL, NULL, sort, NULL);
 	return (sort);
 }

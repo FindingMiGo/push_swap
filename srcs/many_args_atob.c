@@ -6,25 +6,25 @@
 /*   By: tisoya <tisoya@student.42tokyo.jp>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/15 16:15:54 by tisoya            #+#    #+#             */
-/*   Updated: 2022/01/16 19:22:35 by tisoya           ###   ########.fr       */
+/*   Updated: 2022/01/21 16:57:56 by tisoya           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-int	under_pivot(t_node *node, int p, int l, int r)
+int	under_pivot(t_stack *stack, int p, int l, int r)
 {
-	t_node	*head;
+	t_stack	*head;
 	int		count;
 
 	count = 0;
-	head = node;
-	node = node->next;
-	while (node != head && node->val >= l && node->val <= r)
+	head = stack;
+	stack = stack->next;
+	while (stack != head && stack->val >= l && stack->val <= r)
 	{
-		if (node->val <= p)
+		if (stack->val <= p)
 			count++;
-		node = node->next;
+		stack = stack->next;
 	}
 	return (count);
 }
@@ -53,7 +53,7 @@ void	divide_atob(t_stacks *stacks, int p[], int count, int first)
 	r_count = 0;
 	while (count > 0)
 	{
-		if (stacks->a->next->val <= stacks->sort->ptr[p[0]])
+		if (stacks->a->next->val <= stacks->sort->array[p[0]])
 		{
 			if (first == 1)
 				r_count = atob_push_rot(stacks, r_count);
@@ -61,7 +61,7 @@ void	divide_atob(t_stacks *stacks, int p[], int count, int first)
 				push(stacks->a, stacks->b, 1);
 			count--;
 		}
-		else if (stacks->a->next->val <= stacks->sort->ptr[p[1]])
+		else if (stacks->a->next->val <= stacks->sort->array[p[1]])
 		{
 			if (first == 0)
 				r_count = atob_push_rot(stacks, r_count);
@@ -69,7 +69,7 @@ void	divide_atob(t_stacks *stacks, int p[], int count, int first)
 				push(stacks->a, stacks->b, 1);
 			count--;
 		}
-		else if (stacks->a->next->val > stacks->sort->ptr[p[0]])
+		else if (stacks->a->next->val > stacks->sort->array[p[0]])
 			rot(stacks->a, 1);
 	}
 	replace_atob(stacks, r_count, first);
@@ -80,23 +80,23 @@ void	atob(t_stacks *stacks, int l, int r, int first)
 	int		count;
 	int		p[2];
 	int		r_count;
-	t_node	*node_a;
-	t_node	*node_b;
+	t_stack	*stack_a;
+	t_stack	*stack_b;
 
-	node_a = stacks->a;
-	node_b = stacks->b;
+	stack_a = stacks->a;
+	stack_b = stacks->b;
 	if (r - l <= 2)
 	{
-		if (node_a->val == 3)
-			case_three(node_a);
-		else if (node_a->val == 2)
-			case_two(node_a);
+		if (stack_a->val == 3)
+			case_three(stack_a);
+		else if (stack_a->val == 2)
+			case_two(stack_a);
 		return ;
 	}
 	p[1] = (l + r) / 2;
 	p[0] = (l + p[1]) / 2;
-	count = under_pivot(node_a, stacks->sort->ptr[p[1]],
-			stacks->sort->ptr[l], stacks->sort->ptr[r]);
+	count = under_pivot(stack_a, stacks->sort->array[p[1]],
+			stacks->sort->array[l], stacks->sort->array[r]);
 	divide_atob(stacks, p, count, first);
 	atob(stacks, p[1] + 1, r, 0);
 	btoa(stacks, p[0] + 1, p[1]);

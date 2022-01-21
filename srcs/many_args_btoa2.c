@@ -6,7 +6,7 @@
 /*   By: tisoya <tisoya@student.42tokyo.jp>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/18 03:12:25 by tisoya            #+#    #+#             */
-/*   Updated: 2022/01/18 03:13:30 by tisoya           ###   ########.fr       */
+/*   Updated: 2022/01/21 16:56:07 by tisoya           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,9 +18,9 @@ int	btoa_push(t_stacks *stacks)
 	return (1);
 }
 
-int	btoa_rot(t_node *node, int ab)
+int	btoa_rot(t_stack *stack, int ab)
 {
-	rot(node, ab);
+	rot(stack, ab);
 	return (1);
 }
 
