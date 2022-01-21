@@ -6,7 +6,7 @@
 /*   By: tisoya <tisoya@student.42tokyo.jp>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/16 12:07:46 by tisoya            #+#    #+#             */
-/*   Updated: 2022/01/21 05:37:42 by tisoya           ###   ########.fr       */
+/*   Updated: 2022/01/21 15:38:33 by tisoya           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,7 +67,7 @@ void	recorder(char **record, int act)
 	}
 }
 
-void	print_command(char c)
+static void	print_command(char c)
 {
 	if (c == 2)
 		write(1, "sa\n", 3);
