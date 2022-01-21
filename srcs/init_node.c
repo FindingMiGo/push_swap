@@ -6,13 +6,13 @@
 /*   By: tisoya <tisoya@student.42tokyo.jp>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/16 12:19:21 by tisoya            #+#    #+#             */
-/*   Updated: 2022/01/21 15:29:37 by tisoya           ###   ########.fr       */
+/*   Updated: 2022/01/21 15:36:44 by tisoya           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-t_node	*malloc_node(t_node *sentinel, size_t i)
+static t_node	*alloc_node(t_node *sentinel, size_t i)
 {
 	t_node	*node;
 
@@ -39,7 +39,7 @@ t_node	*init_node(int args, char *argv[])
 	i = 0;
 	while (i + 1 < args)
 	{
-		tmp->next = malloc_node(sentinel, i);
+		tmp->next = alloc_node(sentinel, i);
 		tmp->next->prev = tmp;
 		tmp = tmp->next;
 		tmp->index = i + 1;
