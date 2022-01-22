@@ -6,7 +6,7 @@
 /*   By: tisoya <tisoya@student.42tokyo.jp>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/20 17:21:53 by tisoya            #+#    #+#             */
-/*   Updated: 2022/01/23 00:42:36 by tisoya           ###   ########.fr       */
+/*   Updated: 2022/01/23 00:55:26 by tisoya           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -85,15 +85,10 @@ void	btoa(t_stacks *stacks, size_t l, size_t r)
 {
 	int		count;
 	size_t	p[2];
-	t_stack	*stack_a;
-	t_stack	*stack_b;
-	int		r_count;
 
-	stack_a = stacks->a;
-	stack_b = stacks->b;
 	p[0] = (l + r) / 2;
 	p[1] = (p[0] + r) / 2;
-	count = over_pivot(stack_b, stacks->sort->array[p[0]],
+	count = over_pivot(stacks->b, stacks->sort->array[p[0]],
 			stacks->sort->array[l], stacks->sort->array[r]);
 	if (r - l <= 9 && r >= l)
 	{

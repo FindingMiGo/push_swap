@@ -6,7 +6,7 @@
 /*   By: tisoya <tisoya@student.42tokyo.jp>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/15 16:15:54 by tisoya            #+#    #+#             */
-/*   Updated: 2022/01/21 17:18:02 by tisoya           ###   ########.fr       */
+/*   Updated: 2022/01/23 00:57:04 by tisoya           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -79,23 +79,18 @@ void	atob(t_stacks *stacks, size_t l, size_t r, int first)
 {
 	int		count;
 	size_t	p[2];
-	int		r_count;
-	t_stack	*stack_a;
-	t_stack	*stack_b;
 
-	stack_a = stacks->a;
-	stack_b = stacks->b;
 	if (r - l <= 2)
 	{
-		if (stack_a->val == 3)
-			case_three(stack_a);
-		else if (stack_a->val == 2)
-			case_two(stack_a);
+		if (stacks->a->val == 3)
+			case_three(stacks->a);
+		else if (stacks->a->val == 2)
+			case_two(stacks->a);
 		return ;
 	}
 	p[1] = (l + r) / 2;
 	p[0] = (l + p[1]) / 2;
-	count = under_pivot(stack_a, stacks->sort->array[p[1]],
+	count = under_pivot(stacks->a, stacks->sort->array[p[1]],
 			stacks->sort->array[l], stacks->sort->array[r]);
 	divide_atob(stacks, p, count, first);
 	atob(stacks, p[1] + 1, r, 0);

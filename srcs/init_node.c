@@ -6,7 +6,7 @@
 /*   By: tisoya <tisoya@student.42tokyo.jp>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/16 12:19:21 by tisoya            #+#    #+#             */
-/*   Updated: 2022/01/21 16:56:07 by tisoya           ###   ########.fr       */
+/*   Updated: 2022/01/23 00:54:06 by tisoya           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,7 +29,7 @@ t_stack	*init_stack(int args, char *argv[])
 {
 	t_stack	*sentinel;
 	t_stack	*tmp;
-	size_t	i;
+	int		i;
 
 	sentinel = (t_stack *)malloc(sizeof(t_stack));
 	if (!sentinel)

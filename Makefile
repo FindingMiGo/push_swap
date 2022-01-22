@@ -12,17 +12,28 @@ SRCS = $(addprefix $(SRCDIR)/, $(SRC))
 OBJS = $(SRCS:%.c=%.o)
 
 $(NAME) : $(OBJS) $(LIBFT)
-	$(CC) $(OBJS) $(LIBFT) -o $(NAME)
+	$(CC) $(FLAGS) $(OBJS) $(LIBFT) -o $(NAME)
 
 $(LIBFT) :
 	make -C ./libft
+
+all : $(NAME)
+
+.c.o :
+	$(CC) $(FLAGS) -c $< -o $(<:%.c=%.o)
+
+clean :
+	make clean -C ./libft
+	rm -rf $(OBJS)
 
 fclean :
 	make fclean -C ./libft
 	rm -rf $(NAME) $(OBJS)
 
+re : fclean all
+
 checker :
 	curl https://projects.intra.42.fr/uploads/document/document/6774/checker_linux -o checker
 	chmod +x checker
 
-.PHONY: all clean fclean re bonus
+.PHONY: all clean fclean re .c.o bonus

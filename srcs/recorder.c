@@ -6,7 +6,7 @@
 /*   By: tisoya <tisoya@student.42tokyo.jp>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/16 12:07:46 by tisoya            #+#    #+#             */
-/*   Updated: 2022/01/21 15:38:33 by tisoya           ###   ########.fr       */
+/*   Updated: 2022/01/23 00:55:53 by tisoya           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,7 +46,6 @@ static char	*sham_realloc(char **reco, size_t size)
 void	recorder(char **record, int act)
 {
 	static char		**reco;
-	char			*tmp;
 	static size_t	size;
 	static size_t	index;
 

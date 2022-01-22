@@ -6,7 +6,7 @@
 /*   By: tisoya <tisoya@student.42tokyo.jp>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/16 12:14:42 by tisoya            #+#    #+#             */
-/*   Updated: 2022/01/21 16:56:07 by tisoya           ###   ########.fr       */
+/*   Updated: 2022/01/23 00:58:48 by tisoya           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,8 +26,8 @@ int	is_sorted(t_stack *stack)
 
 int	is_digit_str(int as, char *av[])
 {
-	size_t	i;
-	size_t	j;
+	int		i;
+	int		j;
 	char	*str;
 
 	j = 0;
