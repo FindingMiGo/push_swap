@@ -6,13 +6,13 @@
 /*   By: tisoya <tisoya@student.42tokyo.jp>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/15 16:15:54 by tisoya            #+#    #+#             */
-/*   Updated: 2022/01/23 00:57:04 by tisoya           ###   ########.fr       */
+/*   Updated: 2022/01/23 01:21:33 by tisoya           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-int	under_pivot(t_stack *stack, int pv, int lv, int rv)
+static int	under_pivot(t_stack *stack, int pv, int lv, int rv)
 {
 	t_stack	*head;
 	int		count;
@@ -29,7 +29,7 @@ int	under_pivot(t_stack *stack, int pv, int lv, int rv)
 	return (count);
 }
 
-void	replace_atob(t_stacks *stacks, int r_count, int first)
+static void	replace_atob(t_stacks *stacks, int r_count, int first)
 {
 	while (r_count > 0 && first == 0)
 	{
@@ -38,7 +38,7 @@ void	replace_atob(t_stacks *stacks, int r_count, int first)
 	}
 }
 
-int	atob_push_rot(t_stacks *stacks, int r_count)
+static int	atob_push_rot(t_stacks *stacks, int r_count)
 {
 	push(stacks->a, stacks->b, 1);
 	rot(stacks->b, 2);
@@ -46,7 +46,7 @@ int	atob_push_rot(t_stacks *stacks, int r_count)
 	return (r_count);
 }
 
-void	divide_atob(t_stacks *stacks, size_t p[], int count, int first)
+static void	divide_atob(t_stacks *stacks, size_t p[], int count, int first)
 {
 	int	r_count;
 

@@ -6,13 +6,13 @@
 /*   By: tisoya <tisoya@student.42tokyo.jp>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/20 17:21:53 by tisoya            #+#    #+#             */
-/*   Updated: 2022/01/23 00:55:26 by tisoya           ###   ########.fr       */
+/*   Updated: 2022/01/23 01:22:32 by tisoya           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-int	over_pivot(t_stack *stack, int pv, int lv, int rv)
+static int	over_pivot(t_stack *stack, int pv, int lv, int rv)
 {
 	t_stack	*head;
 	int		count;
@@ -29,7 +29,7 @@ int	over_pivot(t_stack *stack, int pv, int lv, int rv)
 	return (count);
 }
 
-void	replace(t_stacks *stacks, int p_count, int r_count, int pr_count)
+static void	replace(t_stacks *stacks, int p_count, int r_count, int pr_count)
 {
 	t_stack	*a;
 	t_stack	*b;
@@ -53,7 +53,7 @@ void	replace(t_stacks *stacks, int p_count, int r_count, int pr_count)
 	}
 }
 
-void	divide(t_stacks *stacks, size_t p[], int c)
+static void	divide(t_stacks *stacks, size_t p[], int c)
 {
 	int		p_count;
 	int		r_count;

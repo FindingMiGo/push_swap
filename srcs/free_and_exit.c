@@ -6,7 +6,7 @@
 /*   By: tisoya <tisoya@student.42tokyo.jp>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/08 16:10:53 by tisoya            #+#    #+#             */
-/*   Updated: 2022/01/21 16:56:07 by tisoya           ###   ########.fr       */
+/*   Updated: 2022/01/23 01:19:08 by tisoya           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,7 +29,7 @@ void	free_stack(t_stack *stack, int count)
 	free(head);
 }
 
-void	free_stackab(t_stack *stack1, t_stack *stack2)
+static void	free_stackab(t_stack *stack1, t_stack *stack2)
 {
 	if (stack1)
 		free_stack(stack1, stack1->val);

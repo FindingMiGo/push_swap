@@ -6,27 +6,27 @@
 /*   By: tisoya <tisoya@student.42tokyo.jp>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/16 12:07:46 by tisoya            #+#    #+#             */
-/*   Updated: 2022/01/21 05:09:57 by tisoya           ###   ########.fr       */
+/*   Updated: 2022/01/23 01:23:59 by tisoya           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-size_t	integrate_rarb(char *record, size_t i, size_t j)
+static size_t	integrate_rarb(char *record, size_t i, size_t j)
 {
 	record[i] = 1;
 	record[j] = 10;
 	return (-1);
 }
 
-size_t	integrate_rrarrb(char *record, size_t i, size_t j)
+static size_t	integrate_rrarrb(char *record, size_t i, size_t j)
 {
 	record[i] = 11;
 	record[j] = 1;
 	return (-1);
 }
 
-size_t	offset(char *record, size_t i, size_t j)
+static size_t	offset(char *record, size_t i, size_t j)
 {
 	record[i] = 1;
 	record[j] = 1;
