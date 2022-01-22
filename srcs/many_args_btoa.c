@@ -6,13 +6,13 @@
 /*   By: tisoya <tisoya@student.42tokyo.jp>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/20 17:21:53 by tisoya            #+#    #+#             */
-/*   Updated: 2022/01/21 16:54:25 by tisoya           ###   ########.fr       */
+/*   Updated: 2022/01/23 00:42:36 by tisoya           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-int	over_pivot(t_stack *stack, int p, int l, int r)
+int	over_pivot(t_stack *stack, int pv, int lv, int rv)
 {
 	t_stack	*head;
 	int		count;
@@ -20,9 +20,9 @@ int	over_pivot(t_stack *stack, int p, int l, int r)
 	count = 0;
 	head = stack;
 	stack = stack->next;
-	while (stack != head && stack->val >= l && stack->val <= r)
+	while (stack != head && stack->val >= lv && stack->val <= rv)
 	{
-		if (stack->val > p)
+		if (stack->val > pv)
 			count++;
 		stack = stack->next;
 	}
@@ -53,7 +53,7 @@ void	replace(t_stacks *stacks, int p_count, int r_count, int pr_count)
 	}
 }
 
-void	divide(t_stacks *stacks, int p[], int c)
+void	divide(t_stacks *stacks, size_t p[], int c)
 {
 	int		p_count;
 	int		r_count;
@@ -81,10 +81,10 @@ void	divide(t_stacks *stacks, int p[], int c)
 	replace(stacks, p_count, r_count, pr_count);
 }
 
-void	btoa(t_stacks *stacks, int l, int r)
+void	btoa(t_stacks *stacks, size_t l, size_t r)
 {
 	int		count;
-	int		p[2];
+	size_t	p[2];
 	t_stack	*stack_a;
 	t_stack	*stack_b;
 	int		r_count;

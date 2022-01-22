@@ -6,7 +6,7 @@
 /*   By: tisoya <tisoya@student.42tokyo.jp>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/08 16:04:27 by tisoya            #+#    #+#             */
-/*   Updated: 2022/01/21 17:16:29 by tisoya           ###   ########.fr       */
+/*   Updated: 2022/01/23 00:44:41 by tisoya           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -83,14 +83,14 @@ void	player(char *record);
 void	optimizer(char *record);
 
 // many_args_atob.c
-int		under_pivot(t_stack *stack, int p, int l, int r);
-void	atob(t_stacks *stacks, size_t l, size_t r, int fst);
+int		under_pivot(t_stack *stack, int pv, int lv, int rv);
+void	atob(t_stacks *stacks, size_t l, size_t r, int first);
 
-void	btoa(t_stacks *stacks, int l, int r);
+void	btoa(t_stacks *stacks, size_t l, size_t r);
 
 int		btoa_push(t_stacks *stacks);
 int		btoa_rot(t_stack *stack, int ab);
-void	btoa_pushall(t_stacks *stacks, int l, int r);
+void	btoa_pushall(t_stacks *stacks, size_t l, size_t r);
 
 void	optimizer(char *record);
 
