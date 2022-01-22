@@ -6,7 +6,7 @@
 /*   By: tisoya <tisoya@student.42tokyo.jp>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/20 17:21:53 by tisoya            #+#    #+#             */
-/*   Updated: 2022/01/23 01:22:32 by tisoya           ###   ########.fr       */
+/*   Updated: 2022/01/23 01:27:40 by tisoya           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -101,16 +101,3 @@ void	btoa(t_stacks *stacks, size_t l, size_t r)
 	btoa(stacks, l, p[0]);
 }
 
-void	case_gt_six(t_stack *stack_a, t_stack *stack_b, t_sort *sort)
-{
-	t_stacks	*stacks;
-
-	stacks = (t_stacks *)malloc(sizeof(t_stacks));
-	if (!stacks)
-		shutdown();
-	vals_storage(NULL, stacks, NULL, NULL);
-	stacks->a = stack_a;
-	stacks->b = stack_b;
-	stacks->sort = sort;
-	atob(stacks, 0, sort->size - 1, 1);
-}

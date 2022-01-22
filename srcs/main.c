@@ -6,11 +6,25 @@
 /*   By: tisoya <tisoya@student.42tokyo.jp>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/08 16:10:53 by tisoya            #+#    #+#             */
-/*   Updated: 2022/01/21 16:57:56 by tisoya           ###   ########.fr       */
+/*   Updated: 2022/01/23 01:27:35 by tisoya           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
+
+static void	case_gt_six(t_stack *stack_a, t_stack *stack_b, t_sort *sort)
+{
+	t_stacks	*stacks;
+
+	stacks = (t_stacks *)malloc(sizeof(t_stacks));
+	if (!stacks)
+		shutdown();
+	vals_storage(NULL, stacks, NULL, NULL);
+	stacks->a = stack_a;
+	stacks->b = stack_b;
+	stacks->sort = sort;
+	atob(stacks, 0, sort->size - 1, 1);
+}
 
 void	size_branch(t_stack *stack_a, t_stack *stack_b, t_sort *sort)
 {

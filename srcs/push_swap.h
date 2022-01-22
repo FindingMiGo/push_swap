@@ -6,7 +6,7 @@
 /*   By: tisoya <tisoya@student.42tokyo.jp>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/08 16:04:27 by tisoya            #+#    #+#             */
-/*   Updated: 2022/01/23 01:26:18 by tisoya           ###   ########.fr       */
+/*   Updated: 2022/01/23 01:27:45 by tisoya           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -68,7 +68,6 @@ void	re_index(t_stack *stack);
 void	atob(t_stacks *stacks, size_t l, size_t r, int first);
 
 // many_args_btoa.c
-void	case_gt_six(t_stack *stack_a, t_stack *stack_b, t_sort *sort);
 void	btoa(t_stacks *stacks, size_t l, size_t r);
 
 // many_args_btoa2.c
