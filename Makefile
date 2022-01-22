@@ -32,8 +32,4 @@ fclean :
 
 re : fclean all
 
-checker :
-	curl https://projects.intra.42.fr/uploads/document/document/6774/checker_linux -o checker
-	chmod +x checker
-
 .PHONY: all clean fclean re .c.o bonus
