@@ -15,7 +15,7 @@ $(NAME) : $(OBJS) $(LIBFT)
 	$(CC) $(FLAGS) $(OBJS) $(LIBFT) -o $(NAME)
 
 $(LIBFT) :
-	make -C ./libft
+	make bonus -C ./libft
 
 all : $(NAME)
 
