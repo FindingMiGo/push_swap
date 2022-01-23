@@ -36,10 +36,10 @@ clean :
 	rm -rf $(OBJS)
 	rm -rf $(OBJS_BONUS)
 
-fclean :
+fclean : clean
 	make fclean -C ./libft
-	rm -rf $(NAME) $(OBJS)
-	rm -rf $(BONUS_NAME) $(OBJS_BONUS)
+	rm -rf $(NAME)
+	rm -rf $(BONUS_NAME)
 
 re : fclean all
 

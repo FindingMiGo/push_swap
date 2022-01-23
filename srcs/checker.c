@@ -6,7 +6,7 @@
 /*   By: tisoya <tisoya@student.42tokyo.jp>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/24 02:17:12 by tisoya            #+#    #+#             */
-/*   Updated: 2022/01/24 02:28:18 by tisoya           ###   ########.fr       */
+/*   Updated: 2022/01/24 03:20:37 by tisoya           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,6 +45,11 @@ void	excute(t_stack *stack_a, t_stack *stack_b, char *command)
 		push(stack_b, stack_a, 0);
 	else if (!ft_strncmp(command, "pb\n", 3))
 		push(stack_a, stack_b, 0);
+	else
+	{
+		write(1, "Error\n", 6);
+		shutdown();
+	}
 }
 
 int	main(int args, char *argv[])

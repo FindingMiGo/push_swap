@@ -6,7 +6,7 @@
 /*   By: tisoya <tisoya@student.42tokyo.jp>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/08 16:10:53 by tisoya            #+#    #+#             */
-/*   Updated: 2022/01/24 02:07:43 by tisoya           ###   ########.fr       */
+/*   Updated: 2022/01/24 02:45:12 by tisoya           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,7 @@ static void	case_gt_six(t_stack *stack_a, t_stack *stack_b, t_sort *sort)
 	atob(stacks, 0, sort->size - 1, 1);
 }
 
-void	size_branch(t_stack *stack_a, t_stack *stack_b, t_sort *sort)
+static void	size_branch(t_stack *stack_a, t_stack *stack_b, t_sort *sort)
 {
 	size_t	size;
 
