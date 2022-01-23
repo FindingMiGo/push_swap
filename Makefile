@@ -6,9 +6,9 @@ FLAGS = -Wall -Wextra -Werror
 LIBFT = ./libft/libft.a
 
 SRC =	main.c base_act.c search_val.c few_args.c \
-		pre_sort.c arg_check.c init_node.c many_args_btoa.c \
+		pre_sort.c arg_check.c init_stack.c many_args_btoa.c \
 		recorder.c many_args_atob.c free_and_exit.c many_args_btoa2.c optimize.c
-SRC_BONUS = checker.c base_act.c init_node.c recorder.c arg_check.c free_and_exit.c optimize.c
+SRC_BONUS = checker.c base_act.c init_stack.c recorder.c arg_check.c free_and_exit.c optimize.c
 SRCDIR = srcs
 SRCS = $(addprefix $(SRCDIR)/, $(SRC))
 SRCS_BONUS = $(addprefix $(SRCDIR)/, $(SRC_BONUS))
