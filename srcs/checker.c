@@ -1,0 +1,86 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   checker.c                                          :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: tisoya <tisoya@student.42tokyo.jp>         +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2022/01/24 02:17:12 by tisoya            #+#    #+#             */
+/*   Updated: 2022/01/24 02:28:18 by tisoya           ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
+#include "push_swap.h"
+
+void	excute(t_stack *stack_a, t_stack *stack_b, char *command)
+{
+	if (!ft_strncmp(command, "sa\n", 3))
+		swap(stack_a, 0);
+	else if (!ft_strncmp(command, "sb\n", 3))
+		swap(stack_b, 0);
+	else if (!ft_strncmp(command, "ss\n", 3))
+	{
+		swap(stack_a, 0);
+		swap(stack_b, 0);
+	}
+	else if (!ft_strncmp(command, "ra\n", 3))
+		rot(stack_a, 0);
+	else if (!ft_strncmp(command, "rb\n", 3))
+		rot(stack_b, 0);
+	else if (!ft_strncmp(command, "rr\n", 3))
+	{
+		rot(stack_a, 0);
+		rot(stack_b, 0);
+	}
+	else if (!ft_strncmp(command, "rra\n", 3))
+		r_rot(stack_a, 0);
+	else if (!ft_strncmp(command, "rrb\n", 3))
+		r_rot(stack_b, 0);
+	else if (!ft_strncmp(command, "rrr\n", 3))
+	{
+		r_rot(stack_a, 0);
+		r_rot(stack_b, 0);
+	}
+	else if (!ft_strncmp(command, "pa\n", 3))
+		push(stack_b, stack_a, 0);
+	else if (!ft_strncmp(command, "pb\n", 3))
+		push(stack_a, stack_b, 0);
+}
+
+int	main(int args, char *argv[])
+{
+	t_stack	*stack_a;
+	t_stack	*stack_b;
+	char	*command;
+
+	if (args < 2)
+		return (0);
+	if (!is_digit_str(args - 1, argv + 1))
+	{
+		write(2, "Error\n", 6);
+		return (0);
+	}
+	stack_a = init_stack(args, argv);
+	stack_b = init_stack(0, NULL);
+	if (!stack_a || !stack_b || is_sorted(stack_a))
+		shutdown();
+	if (!is_unique(stack_a))
+	{
+		write(2, "Error\n", 6);
+		shutdown();
+	}
+	while (1)
+	{
+		command = get_next_line(0);
+		if (command == NULL)
+			break ;
+		excute(stack_a, stack_b, command);
+		free(command);
+	}
+	if (is_sorted(stack_a) && stack_b->val == 0)
+		write(1, "OK\n", 3);
+	else
+		write(1, "KO\n", 3);
+	vals_storage(NULL, NULL, NULL, NULL);
+	return (0);
+}
