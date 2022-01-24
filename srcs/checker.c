@@ -6,11 +6,17 @@
 /*   By: tisoya <tisoya@student.42tokyo.jp>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/24 02:17:12 by tisoya            #+#    #+#             */
-/*   Updated: 2022/01/24 03:20:37 by tisoya           ###   ########.fr       */
+/*   Updated: 2022/01/25 00:32:04 by tisoya           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
+
+static void	error_exit(void)
+{
+	write(2, "Error\n", 6);
+	shutdown();
+}
 
 void	excute(t_stack *stack_a, t_stack *stack_b, char *command)
 {
@@ -19,44 +25,54 @@ void	excute(t_stack *stack_a, t_stack *stack_b, char *command)
 	else if (!ft_strncmp(command, "sb\n", 3))
 		swap(stack_b, 0);
 	else if (!ft_strncmp(command, "ss\n", 3))
-	{
-		swap(stack_a, 0);
-		swap(stack_b, 0);
-	}
+		ss(stack_a, stack_b);
 	else if (!ft_strncmp(command, "ra\n", 3))
 		rot(stack_a, 0);
 	else if (!ft_strncmp(command, "rb\n", 3))
 		rot(stack_b, 0);
 	else if (!ft_strncmp(command, "rr\n", 3))
-	{
-		rot(stack_a, 0);
-		rot(stack_b, 0);
-	}
+		rr(stack_a, stack_b);
 	else if (!ft_strncmp(command, "rra\n", 3))
 		r_rot(stack_a, 0);
 	else if (!ft_strncmp(command, "rrb\n", 3))
 		r_rot(stack_b, 0);
 	else if (!ft_strncmp(command, "rrr\n", 3))
-	{
-		r_rot(stack_a, 0);
-		r_rot(stack_b, 0);
-	}
+		rrr(stack_a, stack_b);
 	else if (!ft_strncmp(command, "pa\n", 3))
 		push(stack_b, stack_a, 0);
 	else if (!ft_strncmp(command, "pb\n", 3))
 		push(stack_a, stack_b, 0);
 	else
+		error_exit();
+}
+
+void	print_result(t_stack *stack_a, t_stack *stack_b)
+{
+	if (is_sorted(stack_a) && stack_b->val == 0)
+		write(1, "OK\n", 3);
+	else
+		write(1, "KO\n", 3);
+}
+
+void	next_command(t_stack *stack_a, t_stack *stack_b)
+{
+	char	*command;
+
+	while (1)
 	{
-		write(1, "Error\n", 6);
-		shutdown();
+		command = get_next_line(0);
+		if (command == NULL)
+			break ;
+		excute(stack_a, stack_b, command);
+		free(command);
 	}
+	print_result(stack_a, stack_b);
 }
 
 int	main(int args, char *argv[])
 {
 	t_stack	*stack_a;
 	t_stack	*stack_b;
-	char	*command;
 
 	if (args < 2)
 		return (0);
@@ -70,22 +86,8 @@ int	main(int args, char *argv[])
 	if (!stack_a || !stack_b || is_sorted(stack_a))
 		shutdown();
 	if (!is_unique(stack_a))
-	{
-		write(2, "Error\n", 6);
-		shutdown();
-	}
-	while (1)
-	{
-		command = get_next_line(0);
-		if (command == NULL)
-			break ;
-		excute(stack_a, stack_b, command);
-		free(command);
-	}
-	if (is_sorted(stack_a) && stack_b->val == 0)
-		write(1, "OK\n", 3);
-	else
-		write(1, "KO\n", 3);
+		error_exit();
+	next_command(stack_a, stack_b);
 	vals_storage(NULL, NULL, NULL, NULL);
 	return (0);
 }

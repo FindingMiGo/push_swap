@@ -87,11 +87,11 @@ int		ft_islower(int c);
 ssize_t	ft_putstr_n(char *s, size_t	size);
 
 //gnl
-char		*get_next_line(int fd);
-void		ft_gnl_free(char **p1, char **p2);
-void		ft_gnl_strmove(char *line, size_t len);
-char		*ft_gnl_trim_until_end(char **line, ssize_t rc);
-char		*ft_strjoin_gnl(char *s1, char const *s2);
-char		*ft_strchr_gnl(const char *s, int c);
+char	*get_next_line(int fd);
+void	ft_gnl_free(char **p1, char **p2);
+void	ft_gnl_strmove(char *line, size_t len);
+char	*ft_gnl_trim_until_end(char **line, ssize_t rc);
+char	*ft_strjoin_gnl(char *s1, char const *s2);
+char	*ft_strchr_gnl(const char *s, int c);
 
 #endif

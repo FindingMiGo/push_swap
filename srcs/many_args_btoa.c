@@ -6,7 +6,7 @@
 /*   By: tisoya <tisoya@student.42tokyo.jp>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/20 17:21:53 by tisoya            #+#    #+#             */
-/*   Updated: 2022/01/23 01:27:40 by tisoya           ###   ########.fr       */
+/*   Updated: 2022/01/24 23:55:31 by tisoya           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -100,4 +100,3 @@ void	btoa(t_stacks *stacks, size_t l, size_t r)
 	btoa(stacks, p[0] + 1, p[1]);
 	btoa(stacks, l, p[0]);
 }
-
