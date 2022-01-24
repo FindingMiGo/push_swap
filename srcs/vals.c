@@ -6,7 +6,7 @@
 /*   By: tisoya <tisoya@student.42tokyo.jp>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/08 16:10:53 by tisoya            #+#    #+#             */
-/*   Updated: 2022/01/23 01:19:08 by tisoya           ###   ########.fr       */
+/*   Updated: 2022/01/25 00:36:37 by tisoya           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -76,10 +76,4 @@ void	vals_storage(t_stack *stack, t_stacks *stacks,
 		s = sort;
 	if (record)
 		r = record;
-}
-
-void	shutdown(void)
-{
-	vals_storage(NULL, NULL, NULL, NULL);
-	exit(EXIT_FAILURE);
 }

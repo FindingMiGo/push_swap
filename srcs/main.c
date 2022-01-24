@@ -6,7 +6,7 @@
 /*   By: tisoya <tisoya@student.42tokyo.jp>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/08 16:10:53 by tisoya            #+#    #+#             */
-/*   Updated: 2022/01/24 02:45:12 by tisoya           ###   ########.fr       */
+/*   Updated: 2022/01/25 04:24:16 by tisoya           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,12 +43,6 @@ static void	size_branch(t_stack *stack_a, t_stack *stack_b, t_sort *sort)
 		case_gt_six(stack_a, stack_b, sort);
 }
 
-static void	error_exit(void)
-{
-	write(2, "Error\n", 6);
-	shutdown();
-}
-
 int	main(int args, char *argv[])
 {
 	t_stack	*stack_a;
@@ -69,10 +63,10 @@ int	main(int args, char *argv[])
 		shutdown();
 	sort = pre_sort(stack_a);
 	record = record_array(stack_a->val * 1);
-	if (!sort || !record || is_sorted(stack_a))
-		shutdown();
 	if (!is_unique(stack_a))
 		error_exit();
+	if (!sort || !record || is_sorted(stack_a))
+		shutdown();
 	size_branch(stack_a, stack_b, sort);
 	player(*record);
 	return (0);

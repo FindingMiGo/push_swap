@@ -6,7 +6,7 @@
 /*   By: tisoya <tisoya@student.42tokyo.jp>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/08 16:04:27 by tisoya            #+#    #+#             */
-/*   Updated: 2022/01/25 00:32:36 by tisoya           ###   ########.fr       */
+/*   Updated: 2022/01/25 00:38:38 by tisoya           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,12 +53,15 @@ void	case_two(t_stack *stack);
 void	case_three(t_stack *stack);
 void	case_ngt_six(t_stack *stack1, t_stack *stack2);
 
-// free_and_exit.c
+// vals.c
 void	free_stack(t_stack *stack, int count);
 void	free_all(t_stack *stack1, t_stack *stack2, t_sort *sort, char *record);
 void	vals_storage(t_stack *stack, t_stacks *stacks,
 			t_sort *sort, char **record);
+
+// shutdown.c
 void	shutdown(void);
+void	error_exit(void);
 
 // init_node.c
 t_stack	*init_stack(int args, char *argv[]);

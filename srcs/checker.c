@@ -6,19 +6,13 @@
 /*   By: tisoya <tisoya@student.42tokyo.jp>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/24 02:17:12 by tisoya            #+#    #+#             */
-/*   Updated: 2022/01/25 00:32:04 by tisoya           ###   ########.fr       */
+/*   Updated: 2022/01/25 02:37:57 by tisoya           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-static void	error_exit(void)
-{
-	write(2, "Error\n", 6);
-	shutdown();
-}
-
-void	excute(t_stack *stack_a, t_stack *stack_b, char *command)
+int	exec(t_stack *stack_a, t_stack *stack_b, char *command)
 {
 	if (!ft_strncmp(command, "sa\n", 3))
 		swap(stack_a, 0);
@@ -43,12 +37,15 @@ void	excute(t_stack *stack_a, t_stack *stack_b, char *command)
 	else if (!ft_strncmp(command, "pb\n", 3))
 		push(stack_a, stack_b, 0);
 	else
-		error_exit();
+		return (-1);
+	return (0);
 }
 
-void	print_result(t_stack *stack_a, t_stack *stack_b)
+void	print_result(t_stack *stack_a, t_stack *stack_b, int err_flag)
 {
-	if (is_sorted(stack_a) && stack_b->val == 0)
+	if (err_flag == 1)
+		write(1, "Error\n", 6);
+	else if (is_sorted(stack_a) && stack_b->val == 0)
 		write(1, "OK\n", 3);
 	else
 		write(1, "KO\n", 3);
@@ -57,16 +54,19 @@ void	print_result(t_stack *stack_a, t_stack *stack_b)
 void	next_command(t_stack *stack_a, t_stack *stack_b)
 {
 	char	*command;
+	int		err_flag;
 
+	err_flag = 0;
 	while (1)
 	{
 		command = get_next_line(0);
 		if (command == NULL)
 			break ;
-		excute(stack_a, stack_b, command);
+		if (exec(stack_a, stack_b, command) == -1)
+			err_flag = 1;
 		free(command);
 	}
-	print_result(stack_a, stack_b);
+	print_result(stack_a, stack_b, err_flag);
 }
 
 int	main(int args, char *argv[])
@@ -83,7 +83,7 @@ int	main(int args, char *argv[])
 	}
 	stack_a = init_stack(args, argv);
 	stack_b = init_stack(0, NULL);
-	if (!stack_a || !stack_b || is_sorted(stack_a))
+	if (!stack_a || !stack_b)
 		shutdown();
 	if (!is_unique(stack_a))
 		error_exit();
