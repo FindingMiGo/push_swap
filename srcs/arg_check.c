@@ -6,7 +6,7 @@
 /*   By: tisoya <tisoya@student.42tokyo.jp>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/16 12:14:42 by tisoya            #+#    #+#             */
-/*   Updated: 2022/01/23 00:58:48 by tisoya           ###   ########.fr       */
+/*   Updated: 2022/01/25 05:52:26 by tisoya           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,6 +35,8 @@ int	is_digit_str(int as, char *av[])
 	{
 		i = 0;
 		str = av[j];
+		if (str[0] == '\0')
+			return (0);
 		if (str[0] == '-' && str[1] != '\0')
 			i++;
 		while (str[i])
