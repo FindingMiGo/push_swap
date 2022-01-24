@@ -6,7 +6,7 @@
 /*   By: tisoya <tisoya@student.42tokyo.jp>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/08 16:10:53 by tisoya            #+#    #+#             */
-/*   Updated: 2022/01/25 04:24:16 by tisoya           ###   ########.fr       */
+/*   Updated: 2022/01/25 04:47:59 by tisoya           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,7 +62,7 @@ int	main(int args, char *argv[])
 	if (!stack_a || !stack_b)
 		shutdown();
 	sort = pre_sort(stack_a);
-	record = record_array(stack_a->val * 1);
+	record = record_array(stack_a->val * 12);
 	if (!is_unique(stack_a))
 		error_exit();
 	if (!sort || !record || is_sorted(stack_a))

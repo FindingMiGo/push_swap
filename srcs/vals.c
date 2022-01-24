@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   free_and_exit.c                                    :+:      :+:    :+:   */
+/*   vals.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: tisoya <tisoya@student.42tokyo.jp>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/08 16:10:53 by tisoya            #+#    #+#             */
-/*   Updated: 2022/01/25 00:36:37 by tisoya           ###   ########.fr       */
+/*   Updated: 2022/01/25 04:43:04 by tisoya           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,27 +51,27 @@ void	free_all(t_stack *stack1, t_stack *stack2, t_sort *sort, char *record)
 void	vals_storage(t_stack *stack, t_stacks *stacks,
 			t_sort *sort, char **record)
 {
-	static t_stack	*n[2];
-	static t_stacks	*st;
+	static t_stack	*st[2];
+	static t_stacks	*sts;
 	static t_sort	*s;
 	static char		**r;
 
 	if (!stack && !stacks && !sort && !record)
 	{
 		if (r)
-			free_all(n[0], n[1], s, *r);
+			free_all(st[0], st[1], s, *r);
 		else
-			free_all(n[0], n[1], s, NULL);
-		free(st);
+			free_all(st[0], st[1], s, NULL);
+		free(sts);
 		free(r);
 		return ;
 	}
-	if (stack && !n[0])
-		n[0] = stack;
-	else if (stack && !n[1] && n[0] != stack)
-		n[1] = stack;
+	if (stack && !st[0])
+		st[0] = stack;
+	else if (stack && !st[1] && st[0] != stack)
+		st[1] = stack;
 	if (stacks)
-		st = stacks;
+		sts = stacks;
 	if (sort)
 		s = sort;
 	if (record)
