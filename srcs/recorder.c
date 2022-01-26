@@ -6,7 +6,7 @@
 /*   By: tisoya <tisoya@student.42tokyo.jp>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/16 12:07:46 by tisoya            #+#    #+#             */
-/*   Updated: 2022/01/23 00:55:53 by tisoya           ###   ########.fr       */
+/*   Updated: 2022/01/27 03:24:16 by tisoya           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -100,6 +100,8 @@ void	player(char *record)
 	{
 		while (record[i] == 1)
 			i++;
+		if (!record[i])
+			break ;
 		print_command(record[i]);
 		i++;
 	}
