@@ -6,7 +6,7 @@
 /*   By: tisoya <tisoya@student.42tokyo.jp>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/24 02:17:12 by tisoya            #+#    #+#             */
-/*   Updated: 2022/01/25 02:37:57 by tisoya           ###   ########.fr       */
+/*   Updated: 2022/01/27 03:15:46 by tisoya           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,7 +51,7 @@ void	print_result(t_stack *stack_a, t_stack *stack_b, int err_flag)
 		write(1, "KO\n", 3);
 }
 
-void	next_command(t_stack *stack_a, t_stack *stack_b)
+void	get_command(t_stack *stack_a, t_stack *stack_b)
 {
 	char	*command;
 	int		err_flag;
@@ -87,7 +87,7 @@ int	main(int args, char *argv[])
 		shutdown();
 	if (!is_unique(stack_a))
 		error_exit();
-	next_command(stack_a, stack_b);
+	get_command(stack_a, stack_b);
 	vals_storage(NULL, NULL, NULL, NULL);
 	return (0);
 }
