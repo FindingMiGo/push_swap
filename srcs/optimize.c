@@ -6,7 +6,7 @@
 /*   By: tisoya <tisoya@student.42tokyo.jp>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/16 12:07:46 by tisoya            #+#    #+#             */
-/*   Updated: 2022/01/23 01:23:59 by tisoya           ###   ########.fr       */
+/*   Updated: 2022/01/27 02:36:12 by tisoya           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -77,7 +77,7 @@ void	optimizer(char *record)
 		while (record[j] == 1)
 			j++;
 		if (record[j] == 0)
-			continue ;
+			break ;
 		i = integrate_and_offset(record, i, j);
 		i++;
 	}
