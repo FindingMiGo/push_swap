@@ -1,0 +1,72 @@
+name: CI
+
+on:
+  push:
+    branches: [master]
+  pull_request:
+    branches: [master]
+
+jobs:
+  norminette:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.10"
+      - run: pip install norminette
+      - run: norminette srcs/ libft/
+
+  build-and-test:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Install dependencies
+        run: sudo apt-get update && sudo apt-get install -y valgrind
+
+      - name: Build
+        run: |
+          make
+          make bonus
+
+      - name: Valgrind leak check
+        run: |
+          valgrind --leak-check=full --error-exitcode=1 ./push_swap 5 3 1 4 2
+          valgrind --leak-check=full --error-exitcode=1 ./push_swap 3 2 1
+          ARG=$(shuf -i 1-100 -n 100 | tr '\n' ' ')
+          valgrind --leak-check=full --error-exitcode=1 ./push_swap $ARG > /dev/null
+
+      - name: Correctness check
+        run: |
+          for i in $(seq 1 10); do
+            ARG=$(shuf -i 1-100 -n 100 | tr '\n' ' ')
+            RESULT=$(./push_swap $ARG | ./checker $ARG)
+            if [ "$RESULT" != "OK" ]; then echo "FAIL: $ARG"; exit 1; fi
+          done
+          for i in $(seq 1 5); do
+            ARG=$(shuf -i 1-500 -n 500 | tr '\n' ' ')
+            RESULT=$(./push_swap $ARG | ./checker $ARG)
+            if [ "$RESULT" != "OK" ]; then echo "FAIL"; exit 1; fi
+          done
+          echo "All correctness checks passed"
+
+      - name: Operation count check
+        run: |
+          MAX100=0
+          for i in $(seq 1 10); do
+            ARG=$(shuf -i 1-100 -n 100 | tr '\n' ' ')
+            COUNT=$(./push_swap $ARG | wc -l)
+            if [ $COUNT -gt $MAX100 ]; then MAX100=$COUNT; fi
+          done
+          echo "100 elements max: $MAX100"
+          if [ $MAX100 -gt 700 ]; then echo "FAIL: >700 ops"; exit 1; fi
+          MAX500=0
+          for i in $(seq 1 5); do
+            ARG=$(shuf -i 1-500 -n 500 | tr '\n' ' ')
+            COUNT=$(./push_swap $ARG | wc -l)
+            if [ $COUNT -gt $MAX500 ]; then MAX500=$COUNT; fi
+          done
+          echo "500 elements max: $MAX500"
+          if [ $MAX500 -gt 5500 ]; then echo "FAIL: >5500 ops"; exit 1; fi
+          echo "All within 42 limits"

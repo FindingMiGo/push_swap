@@ -3,45 +3,45 @@
 /*                                                        :::      ::::::::   */
 /*   checker.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: tisoya <tisoya@student.42tokyo.jp>         +#+  +:+       +#+        */
+/*   By: user <user@student.42tokyo.jp>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/01/24 02:17:12 by tisoya            #+#    #+#             */
-/*   Updated: 2022/01/27 03:15:46 by tisoya           ###   ########.fr       */
+/*   Created: 2022/01/25 00:38:38 by user              #+#    #+#             */
+/*   Updated: 2022/01/25 00:38:38 by user             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-int	exec(t_stack *stack_a, t_stack *stack_b, char *command)
+static int	exec(t_stack *stack_a, t_stack *stack_b, char *command)
 {
-	if (!ft_strncmp(command, "sa\n", 3))
+	if (!ft_strncmp(command, "sa\n", 4))
 		swap(stack_a, 0);
-	else if (!ft_strncmp(command, "sb\n", 3))
+	else if (!ft_strncmp(command, "sb\n", 4))
 		swap(stack_b, 0);
-	else if (!ft_strncmp(command, "ss\n", 3))
+	else if (!ft_strncmp(command, "ss\n", 4))
 		ss(stack_a, stack_b);
-	else if (!ft_strncmp(command, "ra\n", 3))
+	else if (!ft_strncmp(command, "ra\n", 4))
 		rot(stack_a, 0);
-	else if (!ft_strncmp(command, "rb\n", 3))
+	else if (!ft_strncmp(command, "rb\n", 4))
 		rot(stack_b, 0);
-	else if (!ft_strncmp(command, "rr\n", 3))
+	else if (!ft_strncmp(command, "rr\n", 4))
 		rr(stack_a, stack_b);
-	else if (!ft_strncmp(command, "rra\n", 3))
+	else if (!ft_strncmp(command, "rra\n", 5))
 		r_rot(stack_a, 0);
-	else if (!ft_strncmp(command, "rrb\n", 3))
+	else if (!ft_strncmp(command, "rrb\n", 5))
 		r_rot(stack_b, 0);
-	else if (!ft_strncmp(command, "rrr\n", 3))
+	else if (!ft_strncmp(command, "rrr\n", 5))
 		rrr(stack_a, stack_b);
-	else if (!ft_strncmp(command, "pa\n", 3))
+	else if (!ft_strncmp(command, "pa\n", 4))
 		push(stack_b, stack_a, 0);
-	else if (!ft_strncmp(command, "pb\n", 3))
+	else if (!ft_strncmp(command, "pb\n", 4))
 		push(stack_a, stack_b, 0);
 	else
 		return (-1);
 	return (0);
 }
 
-void	print_result(t_stack *stack_a, t_stack *stack_b, int err_flag)
+static void	print_result(t_stack *stack_a, t_stack *stack_b, int err_flag)
 {
 	if (err_flag == 1)
 		write(1, "Error\n", 6);
@@ -51,7 +51,7 @@ void	print_result(t_stack *stack_a, t_stack *stack_b, int err_flag)
 		write(1, "KO\n", 3);
 }
 
-void	get_command(t_stack *stack_a, t_stack *stack_b)
+static void	get_command(t_stack *stack_a, t_stack *stack_b)
 {
 	char	*command;
 	int		err_flag;

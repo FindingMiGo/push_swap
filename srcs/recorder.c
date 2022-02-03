@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   recorder.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: tisoya <tisoya@student.42tokyo.jp>         +#+  +:+       +#+        */
+/*   By: user <user@student.42tokyo.jp>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/12/16 12:07:46 by tisoya            #+#    #+#             */
-/*   Updated: 2022/01/27 03:24:16 by tisoya           ###   ########.fr       */
+/*   Created: 2022/01/25 00:38:38 by user              #+#    #+#             */
+/*   Updated: 2022/01/25 00:38:38 by user             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@ char	**record_array(size_t size)
 	char		*record;
 	char		**ret;
 
-	record = (char *)malloc(sizeof(char) * size + 1);
+	record = (char *)malloc(sizeof(char) * (size + 1));
 	ret = (char **)malloc(sizeof(char *));
 	if (!record || !ret)
 		return (NULL);
@@ -33,7 +33,7 @@ static char	*sham_realloc(char **reco, size_t size)
 {
 	char	*tmp;
 
-	tmp = (char *)malloc(sizeof(char) * (size * 2) + 1);
+	tmp = (char *)malloc(sizeof(char) * (size * 2 + 1));
 	if (!tmp)
 		shutdown();
 	ft_memset(tmp, 1, size * 2);

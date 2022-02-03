@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   many_args_btoa.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: tisoya <tisoya@student.42tokyo.jp>         +#+  +:+       +#+        */
+/*   By: user <user@student.42tokyo.jp>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/12/20 17:21:53 by tisoya            #+#    #+#             */
-/*   Updated: 2022/01/24 23:55:31 by tisoya           ###   ########.fr       */
+/*   Created: 2022/01/25 00:38:38 by user              #+#    #+#             */
+/*   Updated: 2022/01/25 00:38:38 by user             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -86,15 +86,15 @@ void	btoa(t_stacks *stacks, size_t l, size_t r)
 	int		count;
 	size_t	p[2];
 
-	p[0] = (l + r) / 2;
-	p[1] = (p[0] + r) / 2;
-	count = over_pivot(stacks->b, stacks->sort->array[p[0]],
-			stacks->sort->array[l], stacks->sort->array[r]);
 	if (r - l <= 9 && r >= l)
 	{
 		btoa_pushall(stacks, l, r);
 		return ;
 	}
+	p[0] = (l + r) / 2;
+	p[1] = (p[0] + r) / 2;
+	count = over_pivot(stacks->b, stacks->sort->array[p[0]],
+			stacks->sort->array[l], stacks->sort->array[r]);
 	divide(stacks, p, count);
 	btoa(stacks, p[1] + 1, r);
 	btoa(stacks, p[0] + 1, p[1]);

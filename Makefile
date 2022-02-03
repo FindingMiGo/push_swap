@@ -35,17 +35,17 @@ all : $(NAME)
 
 clean :
 	make clean -C ./libft
-	rm -rf $(OBJS)
-	rm -rf $(OBJS_BONUS)
+	rm -f $(OBJS)
+	rm -f $(OBJS_BONUS)
 
 fclean : clean
 	make fclean -C ./libft
-	rm -rf $(NAME)
-	rm -rf $(BONUS_NAME)
+	rm -f $(NAME)
+	rm -f $(BONUS_NAME)
 
 re : fclean all
 
 bonus :
 	make WITH_BONUS=1
 
-.PHONY: all clean fclean re .c.o bonus
+.PHONY: all clean fclean re bonus

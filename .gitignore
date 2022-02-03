@@ -1,7 +1,10 @@
-.gitignore
 *.o
+*.a
 push_swap
+checker
 *.txt
 push_swap_tester/
+push_swap_tester_leo/
 push_swap_ksotester/
-checker
+push_swap_test_linux.sh
+checker_linux

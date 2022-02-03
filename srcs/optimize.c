@@ -3,58 +3,58 @@
 /*                                                        :::      ::::::::   */
 /*   optimize.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: tisoya <tisoya@student.42tokyo.jp>         +#+  +:+       +#+        */
+/*   By: user <user@student.42tokyo.jp>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/12/16 12:07:46 by tisoya            #+#    #+#             */
-/*   Updated: 2022/01/27 03:20:29 by tisoya           ###   ########.fr       */
+/*   Created: 2022/01/25 00:38:38 by user              #+#    #+#             */
+/*   Updated: 2022/01/25 00:38:38 by user             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-static size_t	integrate_rarb(char *record, size_t i, size_t j)
+static int	integrate_rarb(char *record, size_t i, size_t j)
 {
 	record[i] = 1;
 	record[j] = 10;
-	return (-1);
+	return (1);
 }
 
-static size_t	integrate_rrarrb(char *record, size_t i, size_t j)
+static int	integrate_rrarrb(char *record, size_t i, size_t j)
 {
 	record[i] = 11;
 	record[j] = 1;
-	return (-1);
+	return (1);
 }
 
-static size_t	offset(char *record, size_t i, size_t j)
+static int	offset(char *record, size_t i, size_t j)
 {
 	record[i] = 1;
 	record[j] = 1;
-	return (-1);
+	return (1);
 }
 
-static size_t	integrate_and_offset(char *record, size_t i, size_t j)
+static int	integrate_and_offset(char *record, size_t *i, size_t j)
 {
-	if ((record[i] == 4 && record[j] == 5)
-		|| (record[i] == 5 && record[j] == 4))
-		i = offset(record, i, j);
-	else if ((record[i] == 8 && record[j] == 9)
-		|| (record[i] == 9 && record[j] == 8))
-		i = integrate_rarb(record, i, j);
-	else if ((record[i] == 7 && record[j] == 9)
-		|| (record[i] == 9 && record[j] == 7))
-		i = offset(record, i, j);
-	else if ((record[i] == 6 && record[j] == 8)
-		|| (record[i] == 8 && record[j] == 6))
-		i = offset(record, i, j);
-	else if (record[i] == 6)
+	if ((record[*i] == 4 && record[j] == 5)
+		|| (record[*i] == 5 && record[j] == 4))
+		*i -= offset(record, *i, j);
+	else if ((record[*i] == 8 && record[j] == 9)
+		|| (record[*i] == 9 && record[j] == 8))
+		*i -= integrate_rarb(record, *i, j);
+	else if ((record[*i] == 7 && record[j] == 9)
+		|| (record[*i] == 9 && record[j] == 7))
+		*i -= offset(record, *i, j);
+	else if ((record[*i] == 6 && record[j] == 8)
+		|| (record[*i] == 8 && record[j] == 6))
+		*i -= offset(record, *i, j);
+	else if (record[*i] == 6)
 	{
 		while (record[j] == 6 || record[j] == 11 || record[j] == 1)
 			j++;
 		if (record[j] == 7)
-			i = integrate_rrarrb(record, i, j);
+			*i -= integrate_rrarrb(record, *i, j);
 	}
-	return (i);
+	return (0);
 }
 
 void	optimizer(char *record)
@@ -78,7 +78,7 @@ void	optimizer(char *record)
 			j++;
 		if (record[j] == 0)
 			break ;
-		i = integrate_and_offset(record, i, j);
+		integrate_and_offset(record, &i, j);
 		i++;
 		if (!record[i])
 			break ;
